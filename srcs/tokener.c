@@ -1,32 +1,5 @@
 #include "../shell.h"
 
-int tokenise(t_env *env)
-{
-	t_token *token;
-	char 	*line;
-	int		i = 0;
-	int		j = 0;
-
-	line = env->input->line;
-	env->input->len = ft_strlen(line);
-	while (i < env->input->len)
-	{
-		if(line[i] != ' ')
-		{
-			env->input->i = i;
-			if (line[i] == '"' || line[i] == '\'')
-				token = quotenise(env);
-			else
-				token = get_token(env);
-			i = env->input->i;
-			printf("Token :[%s]\n", token->tok);
-			
-
-		}
-	}
-	
-}
-
 t_token	*quotenise(t_env *env)
 {
 	t_token	*token;
@@ -40,7 +13,7 @@ t_token	*quotenise(t_env *env)
 	return (token);
 }
 
-t_token	*sigle_quotenise(t_env *env)
+t_token	*single_quotenise(t_env *env)
 {
 	t_token	*token;
 	char	*line;
@@ -82,5 +55,57 @@ t_token	*double_quotenise(t_env *env)
 	token = new_token(ft_substr(line, env->input->i, j));
 	env->input->i = j;
 	return (token);
+}
 
+t_token	*get_token(t_env *env)
+{
+	t_token *token;
+	t_array	*skp;
+	char	*line;
+	size_t	j;
+	int		k;
+
+	skp = new_array(256); //256 ARRAY SIZE
+	k = 0;
+	j = env->input->i + 1;
+	line = env->input->line;
+	while(j < env->input->len)
+	{
+		if(line[j] =='\\')
+			skp->array[k++]	= j;
+		else if (line[j] == ' ' && line[j - 1] != '\\')
+			break;
+		j++;
+	}
+	token = new_token(senko_substr(line, env->input->i, j, skp));
+	env->input->i = j;
+	return token;
+}
+
+int tokenise(t_env *env)
+{
+	t_token *token;
+	char 	*line;
+	size_t	i;
+
+	line = env->input->line;
+	env->input->len = ft_strlen(line);
+	i = 0;
+	while (i < env->input->len)
+	{
+		if(line[i] != ' ')
+		{
+			env->input->i = i;
+			if (line[i] == '"' || line[i] == '\'')
+				token = quotenise(env);
+			else
+				token = get_token(env);
+			i = env->input->i;
+			printf("Token :[%s]\n", token->tok);
+			add_back(&env->tokens, token);
+		}
+		else
+			i++;
+	}
+	return 0;
 }

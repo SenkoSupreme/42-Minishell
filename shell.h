@@ -13,13 +13,18 @@
 
 /** ----- STRUCTS ----- **/
 
-typedef struct 	source_s
-{   
-	char *buffer;       /* the input text */
-	long bufsize;       /* size of the input text */ 
-	long  curpos;       /* absolute char position in source */
-}				source_t;
+// typedef struct 	source_s
+// {   
+// 	char *buffer;       /* the input text */
+// 	long bufsize;       /* size of the input text */ 
+// 	long  curpos;       /* absolute char position in source */
+// }				source_t;
 
+typedef struct 		s_node
+{
+	void			*data;
+	struct	s_node	*next;
+}					t_node;
 
 typedef struct		s_token
 {
@@ -38,11 +43,13 @@ typedef struct		s_input
 	size_t			i;
 }					t_input;
 
-typedef struct 		s_node
+
+typedef struct 		s_array
 {
-	void			*data;
-	struct	s_node	*next;
-}					t_node;
+	int				*array;
+	int				size;
+}					t_array;
+
 
 typedef struct 		s_env
 {
@@ -56,39 +63,58 @@ typedef struct 		s_env
 /*---------------------------------------*/
 
 /* -- NOVA -- */
-t_env		*initiate(int ac, char **av, char **ev);
-t_token		*new_token(void *tok);
+t_env	*initiate(int ac, char **av, char **ev);
+t_token	*new_token(void *tok);
+t_node	*new_node(void *data);
+t_array	*new_array(int size);
 
 
 /*-------------------*/
 
 /** -- TOKENER -- **/
-int tokenise(t_env *env);
+int 	tokenise(t_env *env);
 t_token	*quotenise(t_env *env);
-t_token	*sigle_quotenise(t_env *env);
+t_token	*single_quotenise(t_env *env);
 t_token	*double_quotenise(t_env *env);
+t_token	*get_token(t_env *env);
 
 
 /*-----------------*/
 /* -- Reader --*/
 char	*read_line(void);
+int		line_is_empty(char *line);
+int	shell_loop(t_env *env);
 /*-------------------*/
 
 
 
 /* uwu SENKO__FT_LIB uwu*/
 
+/* -- PLUMER FN -- */
+void	safe_free(void **ptr);
+
 
 /*-- FU_Utils Functions --*/
 int 	senko_getchar(void);
 void	ft_putstr(char const *s);
-int		ft_strlen(const char *s);
+size_t	ft_strlen(const char *s);
 char	*ft_strdup(char *s);
 char	*ft_strchr(char *s, char c);
 char	*ft_strjoin(char *s1, char *s2);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
+char	*ft_substr(char const *s, int start, int end);
+int		array_is_index(int index, t_array *array);
+char	*senko_substr(char const *s, int start, int end, t_array *skip_index);
+
+
 /*LISTS*/
 void	add_back(t_node **list, void *data);
+void	add_front(t_node **list, void *data);
+void	iter_list(t_node **list, void(*fn)(void **));
+size_t	list_size(t_node *list);
+void	list_clear(t_node **list);
+void	list_destroy(t_node **list);
+void	list_delete(t_node **list);
+
 /*----------------------*/
 
 /* USSR Communists all rights reserved */

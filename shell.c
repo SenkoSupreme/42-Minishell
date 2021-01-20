@@ -41,24 +41,32 @@ char *read_line(void)
 	return buffer;
 }
 
+int	shell_loop(t_env *env)
+{
+	int 	ret;
+
+	ft_putstr("\033[1;3;4;33;41m Union_of_Senko_Shell_Republicans \033[0m$> ");
+	env->input->line = read_line();
+	if(!env->input->line)
+		return -1;
+	else if (line_is_empty(env->input->line))
+		return 0;
+	printf("  ~ initial buffer : > %s\n", env->input->line);
+	ret = tokenise(env);
+	return 0;
+}
 
 int main(int ac, char **av, char **ev)
 {
 	t_env	*env;
-	int 	ret;
 
 	env = initiate(ac, av, ev);
 
 	while (1) //Read-Eval-Print-L
 	{
-		ft_putstr("\033[1;3;4;33;41m Union_of_Senko_Shell_Republicans \033[0m$> ");
-		env->input->line = read_line();
-		if(!env)
-			return -1;
-		printf("  ~ initial buffer : > %s\n\n", env->input->line);
-		ret = 0;
-
-
+		if(shell_loop(env))
+			break;
 	}
+	//free
 	return (0);
 }

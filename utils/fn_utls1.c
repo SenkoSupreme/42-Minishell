@@ -7,9 +7,9 @@ void	ft_putstr(char const *s)
 	write(0, s, ft_strlen(s));
 }
 
-int		ft_strlen(const char *s)
+size_t	ft_strlen(const char *s)
 {
-	int i;
+	size_t i;
 
 	i = 0;
 	while (s[i])
