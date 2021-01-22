@@ -33,6 +33,7 @@ typedef struct		s_token
 	size_t			len;
 	int				cur; 		//current pos for order
 	int				is_quote; 	//bool type 0 or 1;
+	int				is_pipe; 
 
 }               	t_token;
 
@@ -63,7 +64,7 @@ typedef struct 		s_env
 /*---------------------------------------*/
 
 /* -- NOVA -- */
-t_env	*initiate(int ac, char **av, char **ev);
+t_input		*initiate(int ac, char **av, char **ev);
 t_token	*new_token(void *tok);
 t_node	*new_node(void *data);
 t_array	*new_array(int size);
@@ -107,13 +108,17 @@ char	*senko_substr(char const *s, int start, int end, t_array *skip_index);
 
 
 /*LISTS*/
-void	add_back(t_node **list, void *data);
+void	add_back(t_node **list, void *dt);
 void	add_front(t_node **list, void *data);
 void	iter_list(t_node **list, void(*fn)(void **));
 size_t	list_size(t_node *list);
 void	list_clear(t_node **list);
 void	list_destroy(t_node **list);
 void	list_delete(t_node **list);
+void add_at_the_end(t_node **alst, t_node *l_new);
+t_node	*new_new_node(void *new_data);
+void free_node(t_node *lst, void (*del)(void*));
+void			free_content(void *new_data);
 
 /*----------------------*/
 

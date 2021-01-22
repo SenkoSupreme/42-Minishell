@@ -102,7 +102,8 @@ int tokenise(t_env *env)
 				token = get_token(env);
 			i = env->input->i;
 			printf("Token :[%s]\n", token->tok);
-			add_back(&env->tokens, token);
+			//add_back(&env->tokens, token);
+			add_at_the_end(&env->tokens, (void*)token);
 		}
 		else
 			i++;

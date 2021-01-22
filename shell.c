@@ -58,13 +58,29 @@ int	shell_loop(t_env *env)
 
 int main(int ac, char **av, char **ev)
 {
-	t_env	*env;
+	t_env	env;
 
-	env = initiate(ac, av, ev);
+	env.input = initiate(ac, av, ev);
+
+	// t_node *lst = NULL;
+
+	// char *tmp;
+	// char *tmp1;
+	// tmp = "hell on earth";
+	// tmp1 = "hell on fire";
+
+	// add_at_the_end(&lst, tmp);
+	// add_at_the_end(&lst, tmp1);
+	// while (lst)
+	// {
+	// 	printf("  ~ added : > %s\n", (char*)lst->data);
+	// 	lst = lst->next;
+	// }
+	
 
 	while (1) //Read-Eval-Print-L
 	{
-		if(shell_loop(env))
+		if(shell_loop(&env))
 			break;
 	}
 	//free
