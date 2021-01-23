@@ -77,6 +77,9 @@ int 	tokenise(t_env *env);
 t_token	*quotenise(t_env *env);
 t_token	*single_quotenise(t_env *env);
 t_token	*double_quotenise(t_env *env);
+t_token	*split_pipe(t_env *env);
+t_token	*split_scolomn(t_env *env);
+t_token	*split_redirections(t_env *env);
 t_token	*get_token(t_env *env);
 
 

@@ -93,20 +93,29 @@ int tokenise(t_env *env)
 	i = 0;
 	while (i < env->input->len)
 	{
-		if(line[i] != ' ')
+		if(line[i] != ' ' || line[i] != '\t')
 		{
 			env->input->i = i;
 			if (line[i] == '"' || line[i] == '\'')
 				token = quotenise(env);
+			else if (line[i] == '<' || line[i] == '>')
+				token = split_redirections(env);
+			else if (line[i] == '|' )
+			{
+				token = split_pipe(env);
+				token->is_pipe++;
+			}
+			else if (line[i] == ';' )
+				token = split_scolomn(env);
 			else
 				token = get_token(env);
 			i = env->input->i;
 			printf("Token :[%s]\n", token->tok);
-			//add_back(&env->tokens, token);
 			add_at_the_end(&env->tokens, (void*)token);
 		}
 		else
 			i++;
 	}
+	printf("N pipes : [%d] \n", token->is_pipe);
 	return 0;
 }
