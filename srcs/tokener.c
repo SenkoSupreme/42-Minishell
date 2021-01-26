@@ -30,7 +30,7 @@ t_token	*single_quotenise(t_env *env)
 		}
 		j++;
 	}
-	token = new_token(ft_substr(line, env->input->i, j));
+	token = new_token(ft_substr(line, env->input->i, j++));
 	env->input->i = j;
 	return (token);
 }
@@ -52,7 +52,7 @@ t_token	*double_quotenise(t_env *env)
 		}
 		j++;
 	}
-	token = new_token(ft_substr(line, env->input->i, j));
+	token = new_token(ft_substr(line, env->input->i, j++));
 	env->input->i = j;
 	return (token);
 }
