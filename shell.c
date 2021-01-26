@@ -44,9 +44,11 @@ char *read_line(void)
 int	shell_loop(t_env *env)
 {
 	int 	ret;
+	char	*cleanLine;
 
 	ft_putstr("\033[1;3;4;33;41m Union_of_Senko_Shell_Republicans \033[0m$> ");
-	env->input->line = read_line();
+	cleanLine = read_line();
+	env->input->line = skip_white_spaces(cleanLine);
 	if(!env->input->line)
 		return -1;
 	else if (line_is_empty(env->input->line))

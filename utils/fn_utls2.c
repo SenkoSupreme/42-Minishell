@@ -95,3 +95,17 @@ int		line_is_empty(char *line)
 		return 1;
 	return 0;
 }
+
+char 	*skip_white_spaces(char *line)
+{
+	size_t i = 0;
+
+	while(i <= ft_strlen(line))
+	{
+		if (line[i] == ' ')
+			i++;
+		else
+			break;
+	}
+	return line + i; 
+}

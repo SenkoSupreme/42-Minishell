@@ -75,9 +75,10 @@ t_token	*get_token(t_env *env)
 			skp->array[k++]	= j;
 		else if (line[j] == ' ' && line[j - 1] != '\\')
 			break;
+		
 		j++;
 	}
-	token = new_token(senko_substr(line, env->input->i, j, skp));
+	token = new_token(senko_substr(line, env->input->i, j++, skp));
 	env->input->i = j;
 	return token;
 }
@@ -89,6 +90,7 @@ int tokenise(t_env *env)
 	size_t	i;
 
 	line = env->input->line;
+	printf("line :[%s]\n", line);
 	env->input->len = ft_strlen(line);
 	i = 0;
 	while (i < env->input->len)

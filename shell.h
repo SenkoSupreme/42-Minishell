@@ -13,18 +13,13 @@
 
 /** ----- STRUCTS ----- **/
 
-// typedef struct 	source_s
-// {   
-// 	char *buffer;       /* the input text */
-// 	long bufsize;       /* size of the input text */ 
-// 	long  curpos;       /* absolute char position in source */
-// }				source_t;
-
-typedef struct 		s_node
+typedef struct 		s_node //last node the spaces one.
 {
 	void			*data;
 	struct	s_node	*next;
 }					t_node;
+
+//WHOLE STRUCT => SEPARATE BY ; => PIPES => NORMAL WHITESPACES
 
 typedef struct		s_token
 {
@@ -108,6 +103,7 @@ char	*ft_strjoin(char *s1, char *s2);
 char	*ft_substr(char const *s, int start, int end);
 int		array_is_index(int index, t_array *array);
 char	*senko_substr(char const *s, int start, int end, t_array *skip_index);
+char 	*skip_white_spaces(char *line);
 
 
 /*LISTS*/
