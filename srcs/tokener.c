@@ -57,7 +57,7 @@ t_token	*double_quotenise(t_env *env)
 	return (token);
 }
 
-t_token	*get_token(t_env *env)
+t_token	*get_token(t_env *env, char c)
 {
 	t_token *token;
 	t_array	*skp;
@@ -73,9 +73,10 @@ t_token	*get_token(t_env *env)
 	{
 		if(line[j] =='\\')
 			skp->array[k++]	= j;
-		else if (line[j] == ' ' && line[j - 1] != '\\')
+		else if (line[j] == c && line[j - 1] != '\\')
+		{
 			break;
-		
+		}
 		j++;
 	}
 	token = new_token(senko_substr(line, env->input->i, j++, skp));
@@ -85,39 +86,106 @@ t_token	*get_token(t_env *env)
 
 int tokenise(t_env *env)
 {
-	t_token *token;
+	t_token	*token;
 	char 	*line;
 	size_t	i;
 
-	line = env->input->line;
-	printf("line :[%s]\n", line);
+	line = env->input->line;       
 	env->input->len = ft_strlen(line);
 	i = 0;
 	while (i < env->input->len)
 	{
-		if(line[i] != ' ' || line[i] != '\t')
+		if(line[i] != ';')
 		{
 			env->input->i = i;
-			if (line[i] == '"' || line[i] == '\'')
-				token = quotenise(env);
-			else if (line[i] == '<' || line[i] == '>')
-				token = split_redirections(env);
-			else if (line[i] == '|' )
-			{
-				token = split_pipe(env);
-				token->is_pipe++;
-			}
-			else if (line[i] == ';' )
-				token = split_scolomn(env);
-			else
-				token = get_token(env);
+			token = get_token(env, ';');
+			add_at_the_end(&env->semitokens, (void*)token);
 			i = env->input->i;
-			printf("Token :[%s]\n", token->tok);
-			add_at_the_end(&env->tokens, (void*)token);
 		}
 		else
 			i++;
 	}
-	printf("N pipes : [%d] \n", token->is_pipe);
+		while(env->semitokens)
+		{
+			env->semitokens->len = ft_strlen(env->semitokens->data);
+			char *tok = env->semitokens->data; 
+			t_ptoken *ptok;
+			i = 0;
+			while (i < env->semitokens->len)
+			{
+				if (tok[i] != '|')
+				{
+					env->input->i = i;
+					ptok = split_pipe(env);
+					add_at_the_pipe(&env->pipetokens, (void*)ptok);
+					i = env->input->i;
+				}
+				else
+				i++;
+			}
+			
+			printf(" senmicolToken :[%s]| %zu\n", env->semitokens->data, env->semitokens->len);
+			env->semitokens = env->semitokens->next;
+		}
+
+		while(env->pipetokens)
+		{
+			env->pipetokens->len = ft_strlen(env->pipetokens->data);
+			char *tok = env->pipetokens->data; 
+			t_node *ntok;
+			i = 0;
+			while (i < env->pipetokens->len)
+			{
+				if (tok[i] != ' ')
+				{
+					env->input->i = i;
+					ntok = split_node(env);
+					//check_command(ntok);
+					add_at_the_node(&env->simpletokens, (void*)ntok);
+					i = env->input->i;
+				}
+				else
+				i++;
+			}
+
+			printf(" pipeToken :[%s]\n", env->pipetokens->data);
+			env->pipetokens = env->pipetokens->next;
+		}
+		while(env->simpletokens)
+		{
+			printf(" simpleToken :[%s]\n", env->simpletokens->data);
+			env->simpletokens = env->simpletokens->next;
+		}
 	return 0;
 }
+			// if (line[i] == '|' )
+			// {
+			// 	token = get_token(env, '|');
+			// 	if (!env->pipetokens)
+			// 		env->pipetokens = new_pipenode((void*)token);
+			// 	else
+			// 		add_at_the_pipe(&env->pipetokens, (void*)token);
+			// }
+			// /*else if(line[i] == ' ')
+			// {
+			//  	if (line[i] == '"' || line[i] == '\'')
+			// 	token = quotenise(env);
+			// 	else
+			// 	token = get_token(env, ' ');
+			// 	if (!env->tokens->pipeline->node)
+			// 		env->tokens->pipeline->node = new_node((void *)token);
+			// 	else
+			// 		add_at_the_node(&env->tokens->pipeline->node, new_node((void *)token));
+			// }*/
+			// else
+			// // if (line[i] == '"' || line[i] == '\'')
+			// 	token = quotenise(env);
+			// else if (line[i] == '<' || line[i] == '>')
+			// 	token = split_redirections(env);
+			// else if (line[i] == '|' )
+			// {
+			// 	token = split_pipe(env);
+			// }
+			// else if (line[i] == ';' )
+			// 	token = split_scolomn(env);
+			//else

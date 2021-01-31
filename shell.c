@@ -55,6 +55,8 @@ int	shell_loop(t_env *env)
 		return 0;
 	printf("  ~ initial buffer : > %s\n", env->input->line);
 	ret = tokenise(env);
+	//exec
+	//free
 	return 0;
 }
 

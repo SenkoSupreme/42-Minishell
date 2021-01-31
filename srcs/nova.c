@@ -35,6 +35,30 @@ t_node	*new_node(void *data)
 	return node;
 }
 
+t_ptoken	*new_pipenode(void *data)
+{
+	t_ptoken *node;
+
+	node = (t_ptoken*)malloc(sizeof(t_ptoken));
+	if (!node)
+		return NULL;
+	node->data = data;
+	node->next = NULL;
+	return node;
+}
+
+t_stoken	*new_semicoltoken(void *data)
+{
+	t_stoken *node;
+
+	node = (t_stoken*)malloc(sizeof(t_stoken));
+	if (!node)
+		return NULL;
+	node->data = data;
+	node->next = NULL;
+	return node;
+}
+
 t_array	*new_array(int size)
 {
 	t_array *arr;

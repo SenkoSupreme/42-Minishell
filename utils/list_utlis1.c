@@ -57,7 +57,44 @@ void	list_clear(t_node **list)
 	//iter_list(list, fn);
 }
 
-void add_at_the_end(t_node **alst, t_node *l_new)
+void add_at_the_end(t_stoken **alst, t_stoken *l_new)
+{
+	t_stoken	*last;
+
+	if (!l_new)
+		return ;
+	last = *alst;
+	l_new->next = NULL;
+	if ((*alst) == NULL)
+		(*alst) = l_new;
+	else
+	{
+		while (last->next != NULL)
+			last = last->next;
+		last->next = l_new;
+	}
+}
+
+
+void add_at_the_pipe(t_ptoken **alst, t_ptoken *l_new)
+{
+	t_ptoken	*last;
+
+	if (!l_new)
+		return ;
+	last = *alst;
+	l_new->next = NULL;
+	if ((*alst) == NULL)
+		(*alst) = l_new;
+	else
+	{
+		while (last->next != NULL)
+			last = last->next;
+		last->next = l_new;
+	}
+}
+
+void add_at_the_node(t_node **alst, t_node *l_new)
 {
 	t_node	*last;
 
