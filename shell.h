@@ -88,12 +88,11 @@ t_array		*new_array(int size);
 
 /** -- TOKENER -- **/
 int 	tokenise(t_env *env);
-t_token	*quotenise(t_env *env);
-t_token	*single_quotenise(t_env *env);
-t_token	*double_quotenise(t_env *env);
+t_node	*quotenise(t_env *env);
+t_node	*single_quotenise(t_env *env);
+t_node	*double_quotenise(t_env *env);
 t_ptoken*split_pipe(t_env *env);
-t_node	*split_node(t_env *env);
-t_token	*split_redirections(t_env *env);
+t_node	*split_node(t_env *env, char c);
 t_token	*get_token(t_env *env, char c);
 void	check_command(t_node *node);
 
@@ -124,7 +123,7 @@ char	*ft_substr(char const *s, int start, int end);
 int		array_is_index(int index, t_array *array);
 char	*senko_substr(char const *s, int start, int end, t_array *skip_index);
 char 	*skip_white_spaces(char *line);
-int		ft_strcmp(const char *s1, const char *s2);
+int		ft_strcmp(const char *s1,const char *s2);
 
 
 /*LISTS*/

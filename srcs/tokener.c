@@ -1,25 +1,25 @@
 #include "../shell.h"
 
-t_token	*quotenise(t_env *env)
+t_node	*quotenise(t_env *env)
 {
-	t_token	*token;
+	t_node	*token;
+	char 	*line;
 
-	if(env->input->line[env->input->i] == '\'')
+	line = env->pipetokens->data;
+	if(line[env->input->i] == '\'')
 		token = single_quotenise(env);
 	else
 		token = double_quotenise(env);
-	if (token)
-		token->is_quote = 1;
 	return (token);
 }
 
-t_token	*single_quotenise(t_env *env)
+t_node	*single_quotenise(t_env *env)
 {
-	t_token	*token;
+	t_node	*token;
 	char	*line;
 	size_t	j;
 
-	line = env->input->line;
+	line = env->pipetokens->data;
 	j = env->input->i + 1;
 	while (j < env->input->len)
 	{
@@ -30,18 +30,18 @@ t_token	*single_quotenise(t_env *env)
 		}
 		j++;
 	}
-	token = new_token(ft_substr(line, env->input->i, j++));
+	token = new_node(ft_substr(line, env->input->i + 1, --j));
 	env->input->i = j;
 	return (token);
 }
 
-t_token	*double_quotenise(t_env *env)
+t_node	*double_quotenise(t_env *env)
 {
-	t_token	*token;
+	t_node	*token;
 	char	*line;
 	size_t	j;
 
-	line = env->input->line;
+	line = env->pipetokens->data;
 	j = env->input->i + 1;
 	while (j < env->input->len)
 	{
@@ -52,7 +52,7 @@ t_token	*double_quotenise(t_env *env)
 		}
 		j++;
 	}
-	token = new_token(ft_substr(line, env->input->i, j++));
+	token = new_node(ft_substr(line, env->input->i + 1, --j));
 	env->input->i = j;
 	return (token);
 }
@@ -139,8 +139,10 @@ int tokenise(t_env *env)
 				if (tok[i] != ' ')
 				{
 					env->input->i = i;
-					ntok = split_node(env);
-					//check_command(ntok);
+		 			if (tok[i] == '"' /*|| tok[i] == '\''*/)
+						ntok = quotenise(env);
+					else		
+						ntok = split_node(env, ' ');
 					add_at_the_node(&env->simpletokens, (void*)ntok);
 					i = env->input->i;
 				}
@@ -153,7 +155,8 @@ int tokenise(t_env *env)
 		}
 		while(env->simpletokens)
 		{
-			printf(" simpleToken :[%s]\n", env->simpletokens->data);
+			check_command(env->simpletokens);
+			printf(" simpleToken :[%s] | is com [%d]\n", env->simpletokens->data, env->simpletokens->is_com);
 			env->simpletokens = env->simpletokens->next;
 		}
 	return 0;

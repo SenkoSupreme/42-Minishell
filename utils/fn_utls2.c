@@ -110,19 +110,20 @@ char 	*skip_white_spaces(char *line)
 	return line + i; 
 }
 
-int	ft_strcmp(const char *s1, const char *s2)
+int	ft_strcmp(const char *s1,const char *s2)
 {
 	int i;
-	size_t n;
+	int j;
 
-	n = ft_strlen(s1);
-	i = -1;
-	if (s1 == NULL || s2 == NULL)
-	if(n < ft_strlen(s2))
+	if (!s1 || !s2)
 		return -1;
-	while ((size_t)++i < n)
-		if (((unsigned char)s1[i] - (unsigned char)s2[i]) != 0
+	i = 0;
+	j = 0;
+	if(ft_strlen(s1) < ft_strlen(s2))
+		return -1;
+	while ((size_t)i++ < ft_strlen(s2))
+		if ((s1[i] - s2[i]) != 0
 				|| s1[i] == 0 || s2[i] == 0)
-			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+			return (s1[i] - s2[i]);
 	return (0);
 }
