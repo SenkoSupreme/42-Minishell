@@ -21,7 +21,7 @@ t_node	*single_quotenise(t_env *env)
 
 	line = env->pipetokens->data;
 	j = env->input->i + 1;
-	while (j < env->input->len)
+	while (j < env->pipetokens->len)
 	{
 		if(line[j] == '\'' && line[j - 1] != '\\')
 		{
@@ -30,7 +30,7 @@ t_node	*single_quotenise(t_env *env)
 		}
 		j++;
 	}
-	token = new_node(ft_substr(line, env->input->i + 1, --j));
+	token = new_node(ft_substr(line, env->input->i, j));
 	env->input->i = j;
 	return (token);
 }
@@ -43,7 +43,7 @@ t_node	*double_quotenise(t_env *env)
 
 	line = env->pipetokens->data;
 	j = env->input->i + 1;
-	while (j < env->input->len)
+	while (j < env->pipetokens->len)
 	{
 		if(line[j] == '"' && line[j - 1] != '\\')
 		{
@@ -52,7 +52,8 @@ t_node	*double_quotenise(t_env *env)
 		}
 		j++;
 	}
-	token = new_node(ft_substr(line, env->input->i + 1, --j));
+	token = new_node(ft_substr(line, env->input->i , j));
+
 	env->input->i = j;
 	return (token);
 }
@@ -139,7 +140,7 @@ int tokenise(t_env *env)
 				if (tok[i] != ' ')
 				{
 					env->input->i = i;
-		 			if (tok[i] == '"' /*|| tok[i] == '\''*/)
+		 			if (tok[i] == '"' || tok[i] == '\'')
 						ntok = quotenise(env);
 					else		
 						ntok = split_node(env, ' ');
@@ -156,7 +157,8 @@ int tokenise(t_env *env)
 		while(env->simpletokens)
 		{
 			check_command(env->simpletokens);
-			printf(" simpleToken :[%s] | is com [%d]\n", env->simpletokens->data, env->simpletokens->is_com);
+			check_quote(&env->simpletokens);
+			printf(" simpleToken :[%s] | is com [%d] | is quo [%d]\n", env->simpletokens->data, env->simpletokens->is_com, env->simpletokens->is_quote);
 			env->simpletokens = env->simpletokens->next;
 		}
 	return 0;

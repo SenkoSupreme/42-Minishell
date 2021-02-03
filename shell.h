@@ -17,6 +17,7 @@ typedef struct 		s_node
 {
 	void			*data;
 	int				is_com;	//bool
+	int				is_quote;
 	struct	s_node	*next;
 }					t_node;
 
@@ -43,8 +44,6 @@ typedef struct		s_token
 	char			*type;
 	size_t			len;
 	int				cur; 		//current pos for order
-	int				is_quote; 	//bool type 0 or 1;
-
 }               	t_token;
 
 typedef struct		s_input
@@ -95,6 +94,7 @@ t_ptoken*split_pipe(t_env *env);
 t_node	*split_node(t_env *env, char c);
 t_token	*get_token(t_env *env, char c);
 void	check_command(t_node *node);
+void	check_quote(t_node **node);
 
 
 /*-----------------*/

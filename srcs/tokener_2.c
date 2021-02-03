@@ -44,13 +44,13 @@ t_node	*split_node(t_env *env, char c)
 void	check_command(t_node *node)
 {
 	char *command;
-	char *built_ins[5] = {"echo", "ls", "pwd", "cd", "grep"};
+	char *built_ins[7] = {"echo", "pwd", "cd", "export", "unset", "exit", "env"};
 	int i;
 
 	i = 0;
 	
 		command = node->data;
-		while(i < 5)
+		while(i < 7)
 		{
 			if (ft_strcmp(command, built_ins[i]) != 0)
 				node->is_com = 0;
@@ -61,4 +61,22 @@ void	check_command(t_node *node)
 			}
 			i++;
 		}
+}
+
+void	check_quote(t_node **node)
+{
+	char *command;
+	int		com_len;
+
+	command = (*node)->data;
+	com_len = ft_strlen(command);
+	(*node)->is_quote = 0;
+
+	if (((command[0] == '"'  && command[com_len - 1] == '"')) 
+	|| ((command[0] == '\'' ) && (command[com_len - 1]) == '\''))
+	{
+		command = ft_substr(command, 1, com_len - 1);
+		(*node)->data = command;
+		(*node)->is_quote = 1;
+	}
 }
