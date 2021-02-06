@@ -122,7 +122,10 @@ int tokenise(t_env *env)
 					i = env->input->i;
 				}
 				else
-				i++;
+				{
+					ptok->is_pipe = 1;
+					i++;
+				}
 			}
 			
 			printf(" senmicolToken :[%s]| %zu\n", env->semitokens->data, env->semitokens->len);
@@ -151,14 +154,15 @@ int tokenise(t_env *env)
 				i++;
 			}
 
-			printf(" pipeToken :[%s]\n", env->pipetokens->data);
+			printf(" pipeToken :[%s] | is pipe [%d]\n", env->pipetokens->data, env->pipetokens->is_pipe);
 			env->pipetokens = env->pipetokens->next;
 		}
 		while(env->simpletokens)
 		{
 			check_command(env->simpletokens);
 			check_quote(&env->simpletokens);
-			printf(" simpleToken :[%s] | is com [%d] | is quo [%d]\n", env->simpletokens->data, env->simpletokens->is_com, env->simpletokens->is_quote);
+			check_redirection(env->simpletokens); //bug fix
+			printf(" simpleToken :[%s] | is com [%d] | is quo [%d] | is redir [%d]\n", env->simpletokens->data, env->simpletokens->is_com, env->simpletokens->is_quote, env->simpletokens->is_redir);
 			env->simpletokens = env->simpletokens->next;
 		}
 	return 0;

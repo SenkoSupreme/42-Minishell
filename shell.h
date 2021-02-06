@@ -18,6 +18,7 @@ typedef struct 		s_node
 	void			*data;
 	int				is_com;	//bool
 	int				is_quote;
+	int				is_redir;
 	struct	s_node	*next;
 }					t_node;
 
@@ -92,9 +93,11 @@ t_node	*single_quotenise(t_env *env);
 t_node	*double_quotenise(t_env *env);
 t_ptoken*split_pipe(t_env *env);
 t_node	*split_node(t_env *env, char c);
+t_node	*split_redirect(t_env *env);
 t_token	*get_token(t_env *env, char c);
 void	check_command(t_node *node);
 void	check_quote(t_node **node);
+void check_redirection(t_node *node);
 
 
 /*-----------------*/

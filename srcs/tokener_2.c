@@ -65,13 +65,16 @@ void	check_command(t_node *node)
 
 void	check_quote(t_node **node)
 {
-	char *command;
+	char 	*command;
 	int		com_len;
+	int		i;
 
 	command = (*node)->data;
 	com_len = ft_strlen(command);
 	(*node)->is_quote = 0;
+	i = 0;
 
+	
 	if (((command[0] == '"'  && command[com_len - 1] == '"')) 
 	|| ((command[0] == '\'' ) && (command[com_len - 1]) == '\''))
 	{
@@ -79,4 +82,14 @@ void	check_quote(t_node **node)
 		(*node)->data = command;
 		(*node)->is_quote = 1;
 	}
+}
+
+void check_redirection(t_node *node)
+{
+	char *command;
+
+	command = node->data;
+	if (command[0] == '<' || command[0] == '>')
+		node->is_redir = 1;
+
 }

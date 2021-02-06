@@ -84,6 +84,7 @@ int main(int ac, char **av, char **ev)
 
 	while (1) //Read-Eval-Print-L
 	{
+		//system("leaks a.out");
 		if(shell_loop(&env))
 			break;
 	}
