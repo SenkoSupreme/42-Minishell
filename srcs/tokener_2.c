@@ -11,7 +11,10 @@ t_ptoken	*split_pipe(t_env *env)
 	while (j < env->input->len)
 	{
 		if(line[j] == '|' && line[j - 1] != '\\')
+		{
+			j++;
 			break;
+		}
 		j++;
 	}
 	token = new_pipenode(ft_substr(line, env->input->i, j));
