@@ -51,19 +51,27 @@ void	check_command(t_node *node)
 	int i;
 
 	i = 0;
-	
-		command = node->data;
-		while(i < 7)
+	command = node->data;
+
+	while(i < 7)
+	{
+		if (ft_strcmp(command, built_ins[i]) != 0)
 		{
-			if (ft_strcmp(command, built_ins[i]) != 0)
-				node->is_com = 0;
-			else
-			{
-				node->is_com = 1;
-				break;
-			}
-			i++;
+			node->type = 0;
 		}
+		else
+		{
+			node->type = CMD;
+			break;														
+		}
+		i++;
+	}
+	if (command[0] == '-')
+		node->type = ARG;
+	if(command[0] == '|')
+		node->type = PIPE;
+	if (command[0] == '<' || command[0] == '>')
+		node->type = REDIR;
 }
 
 void	check_quote(t_node **node)
@@ -74,7 +82,6 @@ void	check_quote(t_node **node)
 
 	command = (*node)->data;
 	com_len = ft_strlen(command);
-	(*node)->is_quote = 0;
 	i = 0;
 
 	
@@ -83,16 +90,6 @@ void	check_quote(t_node **node)
 	{
 		command = ft_substr(command, 1, com_len - 1);
 		(*node)->data = command;
-		(*node)->is_quote = 1;
+		(*node)->type = QUOTE;
 	}
-}
-
-void check_redirection(t_node *node)
-{
-	char *command;
-
-	command = node->data;
-	if (command[0] == '<' || command[0] == '>')
-		node->is_redir = 1;
-
 }

@@ -7,6 +7,12 @@
 #include <stdio.h>
 #include <errno.h>
 
+#define CMD 1;
+#define ARG 2;
+#define REDIR 3;
+#define PIPE 4;
+#define QUOTE 5;
+
 /** ----- STRUCTS ----- **/
 
 //WHOLE STRUCT => SEPARATE BY ; => PIPES => NORMAL WHITESPACES
@@ -16,9 +22,7 @@
 typedef struct 		s_node
 {
 	void			*data;
-	int				is_com;	//bool
-	int				is_quote;
-	int				is_redir;
+	int				type;	//bool
 	struct	s_node	*next;
 }					t_node;
 
@@ -97,7 +101,7 @@ t_node	*split_redirect(t_env *env);
 t_token	*get_token(t_env *env, char c);
 void	check_command(t_node *node);
 void	check_quote(t_node **node);
-void check_redirection(t_node *node);
+
 
 
 /*-----------------*/

@@ -76,6 +76,7 @@ t_token	*get_token(t_env *env, char c)
 			skp->array[k++]	= j;
 		else if (line[j] == c && line[j - 1] != '\\')
 		{
+			j++;
 			break;
 		}
 		j++;
@@ -153,16 +154,13 @@ int tokenise(t_env *env)
 				else
 				i++;
 			}
-
-			printf(" pipeToken :[%s] | is pipe [%d]\n", env->pipetokens->data, env->pipetokens->is_pipe);
 			env->pipetokens = env->pipetokens->next;
 		}
 		while(env->simpletokens)
 		{
 			check_command(env->simpletokens);
 			check_quote(&env->simpletokens);
-			check_redirection(env->simpletokens); //bug fix
-			printf(" simpleToken :[%s] | is com [%d] | is quo [%d] | is redir [%d]\n", env->simpletokens->data, env->simpletokens->is_com, env->simpletokens->is_quote, env->simpletokens->is_redir);
+			printf(" simpleToken :[%s] | type [%d] \n", env->simpletokens->data, env->simpletokens->type);
 			env->simpletokens = env->simpletokens->next;
 		}
 	return 0;
