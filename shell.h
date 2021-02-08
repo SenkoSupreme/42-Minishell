@@ -7,11 +7,11 @@
 #include <stdio.h>
 #include <errno.h>
 
-#define CMD 1;
-#define ARG 2;
-#define REDIR 3;
-#define PIPE 4;
-#define QUOTE 5;
+#define CMD 1; //command
+#define ARG 2; //argument
+#define REDIR 3; // rederiction
+#define PIPE 4; // pipe
+#define QUOTE 5; // Quote
 
 /** ----- STRUCTS ----- **/
 
