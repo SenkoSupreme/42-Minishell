@@ -63,7 +63,13 @@ char	*conv_env(char *str)
 			i++;
 			if (ft_strchr("0123456789", str[i]) && i++)
 				continue;
-			res = 
+			res = replace_env(str, res, &i, len);
 		}
+		else if (str[i + 1] == '?')
+			res = last_com_return(res, &i);
+		else
+			res = ft_append(str, res, &i);
 	}
+	free(str);
+	return (res);
 }
