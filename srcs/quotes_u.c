@@ -66,7 +66,7 @@ char		*quotes_conv(char *str)
 	while (str[i])
 	{
 		if ((!quote[0] || (quote[0] == '"' && (str[i + 1] == '\\' 
-	|| str[i + 1] == '$' || str[i + 1] == "'"))) && is_on_char(str,i, quote) && ++i)
+	|| str[i + 1] == '$' || str[i + 1] == '"'))) && is_on_char(str,i, quote) && ++i)
 		quote[0] = quote[0] ? 0 : str[i];
 		else
 			res = ft_strappend(res, str[i]);
@@ -91,8 +91,8 @@ void	convert_argv_env(t_list **av, t_list *prev, char *s)
 		s != tmp->content ? free(s) : NULL;
 		if (*((char *)tmp->content) == 0)
 		{
-			if (*argv == tmp)
-				*argv = lst_remove(&tmp, tmp, free);
+			if (*av == tmp)
+				*av = lst_remove(&tmp, tmp, free);
 			else
 				prev->next = lst_remove(&tmp, tmp, free);
 		}

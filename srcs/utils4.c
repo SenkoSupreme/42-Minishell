@@ -66,7 +66,7 @@ void	lst_add(t_list *lst, t_list *new)
 	lst->next = new;
 }
 
-void	lst_remove(t_list **lst, t_list *to_del, void (*del)(void *))
+t_list	*lst_remove(t_list **lst, t_list *to_del, void (*del)(void *))
 {
 	t_list *tmp;
 

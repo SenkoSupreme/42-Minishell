@@ -12,7 +12,7 @@ void	split_args(t_list *lst)
 	str = tmp->content;
 	while (*str == ' ')
 		str++;
-	while (len = word_len(str + i, " ", 0))
+	while ((len = word_len(str + i, " ", 0)))
 	{
 		if (i == 0)
 			tmp->content = ft_substr(str, i , len);

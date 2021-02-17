@@ -13,9 +13,9 @@ static	int	senko_wait()
 	return (pid);
 }
 
-static	int	init_exec(t_command *com, int *n, char **av)
+static	int	init_exec(t_command *com, int *n, char ***av)
 {
-	if (!com || !com->argv || com->in_red == -1, com->out_red == -1)
+	if (!com || !com->argv || com->in_red == -1 || com->out_red == -1)
 		return (1);
 	if (com->in_red == 0)
 	{
@@ -25,6 +25,7 @@ static	int	init_exec(t_command *com, int *n, char **av)
 	}
 	convert_argv_env(&com->argv, NULL, NULL);
 	*av = list_to_array(com->argv);
+	return (0);
 }
 
 static	void builtin_coms(t_command *com, char **argv, int ret)

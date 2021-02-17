@@ -5,7 +5,7 @@ int				open_file(char *file, int flag, char *type)
 	t_command	*cmd;
 	int			fd;
 	int			red;
-	char		cfile;
+	char		*cfile;
 
 	cfile = ft_strdup(file);
 	file = quotes_conv(convert_env(cfile));

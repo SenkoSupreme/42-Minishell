@@ -2,7 +2,7 @@
 
 char		**list_to_array(t_list *lst)
 {
-	char	*av;
+	char	**av;
 	int		len;
 	int		i;
 

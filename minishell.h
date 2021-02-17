@@ -97,7 +97,7 @@ void			open_red_file(void *file, void *c);
 void			open_red_files(t_command *com);
 void			free_red_files();
 void			lst_add(t_list *lst, t_list *new);
-void			lst_remove(t_list **lst, t_list *to_del, void (*del)(void *));
+t_list			*lst_remove(t_list **lst, t_list *to_del, void (*del)(void *));
 void			split_args(t_list *lst);
 void			convert_argv_env(t_list **av, t_list *prev, char *s);
 char			**list_to_array(t_list *lst);
