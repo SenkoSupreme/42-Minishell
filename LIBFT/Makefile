@@ -47,8 +47,8 @@ $(NAME):
 	ranlib $(NAME)
 
 bonus:
-	gcc $(CFLAGS) -c $(SRC_BONUS)
-	ar rc $(NAME) $(OBJ_BONUS)
+	gcc $(CFLAGS) -c $(SRC_BONUS) $(SRC)
+	ar rc $(NAME) $(OBJ_BONUS) $(OBJ)
 	ranlib $(NAME)
 
 clean:

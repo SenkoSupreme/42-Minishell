@@ -104,4 +104,6 @@ void			split_args(t_list *lst);
 void			convert_argv_env(t_list **av, t_list *prev, char *s);
 char			**list_to_array(t_list *lst);
 void			exec_commands();
+char			*conv_env(char *str);
+void			convert_argv_env(t_list **av, t_list *prev, char *s);
 #endif
