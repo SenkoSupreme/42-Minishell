@@ -92,7 +92,6 @@ void			exit_value(int ret, char **argv);
 int				ptr_strlen(char **dp);
 char			*quotes_conv(char *str);
 char			*replace_env(char *str, char *res, int *i, int len);
-char			*convert_env(char *str);
 char			*last_com_return(char *res, int *i);
 int				open_file(char *file, int flag, char *type);
 void			open_red_file(void *file, void *c);

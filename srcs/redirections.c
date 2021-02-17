@@ -8,7 +8,7 @@ int				open_file(char *file, int flag, char *type)
 	char		*cfile;
 
 	cfile = ft_strdup(file);
-	file = quotes_conv(convert_env(cfile));
+	file = quotes_conv(conv_env(cfile));
 	cmd = g_minishell.com_head->content;
 	red = senko_equal_str(type, "<") ? cmd->in_red : cmd->out_red;
 	if (red == 2)

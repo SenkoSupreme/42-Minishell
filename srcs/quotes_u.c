@@ -85,7 +85,7 @@ void	convert_argv_env(t_list **av, t_list *prev, char *s)
 	tmp = *av;
 	while (tmp)
 	{
-		tmp->content = convert_env(tmp->content);
+		tmp->content = conv_env(tmp->content);
 		s = tmp->content;
 		split_args(tmp);
 		s != tmp->content ? free(s) : NULL;
