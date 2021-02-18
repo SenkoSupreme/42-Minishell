@@ -60,18 +60,18 @@ int		proc_command(char *str)
 	else
 		parse_command(str);
 
-		//printf("test : %s\n", str);
-		while (com->argv)
-		{
-			printf("token : %s\n", com->argv->content);
-			com->argv = com->argv->next;
-		}
+		// //printf("test : %s\n", str);
+		// while (com->argv)
+		// {
+		// 	printf("token : %s\n", com->argv->content);
+		// 	com->argv = com->argv->next;
+		// }
 
-		while (com->red_files)
-		{
-			printf("red : %s\n", com->red_files->content);
-			com->red_files = com->red_files->next;
-		}
+		// while (com->red_files)
+		// {
+		// 	printf("red : %s\n", com->red_files->content);
+		// 	com->red_files = com->red_files->next;
+		// }
 	return (0);
 }
 

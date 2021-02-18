@@ -42,7 +42,7 @@ void	shell_exec(int n)
 	if (g_minishell.status && g_minishell.read_next != NULL)
 		err_syntax("\n");
 	if (g_minishell.status && g_minishell.read_next == NULL)
-		printf(""); // execute here
+		exec_commands();
 	if (!senko_equal_str(g_minishell.read_next, "|"))
 		ft_lstclear(&g_minishell.com_head, free_com);
 	if (n)

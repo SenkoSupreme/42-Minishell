@@ -1,7 +1,7 @@
 
 NAME=minishell
 
-SRC = srcs/*.c minishell.c
+SRC = srcs/*.c exec/builtin/*.c exec/*.c minishell.c
 
 OBJ = $(SRC:.c=.o)
 

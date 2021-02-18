@@ -38,7 +38,8 @@ static	void builtin_coms(t_command *com, char **argv, int ret)
 	out = dup(1);
 	dup2(com->in_red, 0);
 	dup2(com->out_red, 1);
-	// g_minishell.ret =  int - > treat builtin com ! takes (**argv, int com id) 
+	// g_minishell.ret =  int - > treat builtin com ! takes (**argv, int com id)
+	g_minishell.ret = exec_builtin(argv, ret);
 	dup2(in, 0);
 	dup2(out, 1);
 	if (com->in_red != 0)
@@ -65,14 +66,14 @@ void	exec_commands()
 			continue;
 		if ((ret = is_command(argv[0])))
 			builtin_coms(com, argv, ret);
-		else
-		{
-			free(argv);
-			// system coms  void -> (command, int ret, int *n)
-		}
+		// else
+		// {
+		// 	free(argv);
+		// 	// system coms  void -> (command, int ret, int *n)
+		// }
 		lst = lst->next;
 	}
-	while (n--)
-		senko_wait();
+	// while (n--)
+	// 	senko_wait();
 	free_red_files();
 }
