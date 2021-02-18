@@ -111,5 +111,6 @@ void exec_command(t_env *node);
 int		exec_builtin(char **cmd, int ret);
 // int		is_builtin(char *cmd);
 void				ft_echo(char **args);
+void	ft_env(char **argv);
 int		ft_pwd(void);
 #endif
