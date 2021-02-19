@@ -66,11 +66,11 @@ void	exec_commands()
 			continue;
 		if ((ret = is_command(argv[0])))
 			builtin_coms(com, argv, ret);
-		// else
-		// {
-		// 	free(argv);
-		// 	// system coms  void -> (command, int ret, int *n)
-		// }
+		else
+		{
+			free(argv);
+			// system coms  void -> (command, int ret, int *n)
+		}
 		lst = lst->next;
 	}
 	// while (n--)

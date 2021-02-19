@@ -110,6 +110,7 @@ void			convert_argv_env(t_list **av, t_list *prev, char *s);
 void	exec_command(t_env *node);
 int		exec_builtin(char **cmd, int ret);
 void	ft_echo(char **args);
+void	ft_env(char **argv);
 int		ft_pwd(void);
 void	ft_exit(char **cmd);
 
