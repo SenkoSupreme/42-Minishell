@@ -14,6 +14,7 @@ static int     n_skip(char *s)
             return (0);
         i++;
     }
+    // printf("[%c] ---- [%c]\n", s[0], s[1]);
     return (1);
 }
 
