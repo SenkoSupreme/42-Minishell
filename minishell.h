@@ -107,9 +107,10 @@ char			*conv_env(char *str);
 void			convert_argv_env(t_list **av, t_list *prev, char *s);
 
 
-void exec_command(t_env *node);
+void	exec_command(t_env *node);
 int		exec_builtin(char **cmd, int ret);
-// int		is_builtin(char *cmd);
-void				ft_echo(char **args);
+void	ft_echo(char **args);
 int		ft_pwd(void);
+void	ft_exit(char **cmd);
+
 #endif

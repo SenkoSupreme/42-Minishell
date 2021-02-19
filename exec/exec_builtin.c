@@ -14,8 +14,8 @@ int		exec_builtin(char **cmd, int ret)
 	// 	printf("hello from unset\n");
 	// else if (strcmp(cmd, "env") == 0)
 	// 	printf("hello from env\n");
-	// else if (strcmp(cmd, "exit") == 0)
-	// 	printf("hello from exit\n");
+	else if (ret == 7)
+		ft_exit(cmd);
 	// else
 	// 	printf("hello from nothing\n");
 	return (0);
