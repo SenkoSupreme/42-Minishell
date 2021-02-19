@@ -1,14 +1,17 @@
 #include "../../minishell.h"
 
-static void    export_update(char **str, char *start)
+static void    export_update(char *start)
 {
     int len;
+    int i;
 
-    len = ft_strlen(*str);
+    i = 0;
+    len = ft_strlen(start);
     ft_putstr_fd("\"", 1);
-    while (++(*start) <= len)
+    while (i < len)
     {
-        ft_putstr_fd(str[*start], 1);
+        ft_putchar_fd(start[i], 1);
+        i++;
     }
     ft_putstr_fd("\"\n", 1);
 }
@@ -18,14 +21,13 @@ void    ft_export()
     t_list *env;
     char *start;
 
-    start = 0;
     env = g_env.env_h;
     while (env)
 	{
 		if ((start = ft_strchr(env->content, '=')))
 		{
             ft_putstr_fd("declare -x ", 1);
-            export_update(env->content, &start);
+            export_update(start);
 			// ft_putstr_fd(env->content, 1);
 			// ft_putstr_fd("\n", 1);
 		}
