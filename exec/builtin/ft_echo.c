@@ -4,6 +4,8 @@ static int     n_skip(char *s)
 {
     int i;
     i = 1;
+    if (s[0] == '-' && s[1] == '\0')
+        return (0);
     if (s[0] != '-')
         return (0);
     while (s[i])

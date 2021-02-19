@@ -26,13 +26,14 @@ static int	is_quote(const char *str, int i)
 		if (!quote[0] && (str[j] == '"' || str[j] == '\'') 
 		&& !is_backslash(str, j))
 			quote[0] = str[j];
-		else if ((quote[0] == '\'' && str[j] == '\'') || (quote[0] == '"' && str[j] == '\"' && !is_backslash(str, j)))
+		else if ((quote[0] == '\'' && str[j] == '\'') || 
+		(quote[0] == '"' && str[j] == '\"' && !is_backslash(str, j)))
 			quote[0] = 0;
 		j++;
 	}
 	if (quote[0] == '\'' && str[i] != '\'')
 		return (quote[0]);
-	else if (quote[0] == '"' && str[i] == '"')
+	else if (quote[0] == '"' && str[i] != '"')
 		return ((str[i] == '$' || str[i] == '\\') ? 0 : quote[0]);
 	return (0);
 }
@@ -65,8 +66,12 @@ char		*quotes_conv(char *str)
 	res = ft_strdup("");
 	while (str[i])
 	{
-		if ((!quote[0] || (quote[0] == '"' && (str[i + 1] == '\\' 
-	|| str[i + 1] == '$' || str[i + 1] == '"'))) && is_on_char(str,i, quote) && ++i)
+		if ((!quote[0] || 
+		(quote[0] == '"' && (str[i + 1] == '\\' 
+	|| str[i + 1] == '$' || str[i + 1] == '"'))) && is_on_char(str,i, "\\") && ++i)
+		continue;
+		if ((!quote[0] && is_on_char(str, i, "'\"")) || 
+		(quote[0] == '\'' && str[i] == '\'') || is_on_char(str, i, quote))
 		quote[0] = quote[0] ? 0 : str[i];
 		else
 			res = ft_strappend(res, str[i]);
