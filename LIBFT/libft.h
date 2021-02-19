@@ -68,5 +68,5 @@ void (*del)(void*));
 char				**ft_split(char const *s, char c);
 char				*ft_substr(char const *s, unsigned int start, size_t len);
 void				*ft_memchr(const void *str, int c, size_t n);
-
+int					ft_strcmp(const char *s1, const char *s2);
 #endif
