@@ -113,5 +113,6 @@ void	ft_echo(char **args);
 void	ft_env(char **argv);
 int		ft_pwd(void);
 void	ft_exit(char **cmd);
+void    ft_export();
 
 #endif

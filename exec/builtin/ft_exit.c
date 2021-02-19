@@ -29,9 +29,7 @@ void	ft_exit(char **cmd)
 	else if (cmd[0] && ft_strisnum(cmd[1]) == 0)
 	{
 		g_minishell.ret = 255;
-		ft_putstr_fd("minishell: exit: ", 2);
-		ft_putstr_fd(cmd[0], 2);
-		ft_putendl_fd(": numeric argument required", 2);
+		senko_print("minishell: ", "exit :", cmd[1], ": numeric argument required\n");
 	}
 	else if (cmd[1])
 		g_minishell.ret = ft_atoi(cmd[1]);
