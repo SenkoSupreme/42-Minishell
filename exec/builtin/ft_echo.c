@@ -4,6 +4,9 @@ static int     n_skip(char *s)
 {
     int i;
     i = 1;
+    // printf("[%c] ---- [%c]\n", s[0], s[1]);
+    if (s[0] == '-' && s[1] == '\0')
+        return (0);
     if (s[0] != '-')
         return (0);
     while (s[i])
@@ -12,6 +15,7 @@ static int     n_skip(char *s)
             return (0);
         i++;
     }
+    // printf("[%c] ---- [%c]\n", s[0], s[1]);
     return (1);
 }
 
