@@ -1,35 +1,35 @@
 #include "../../minishell.h"
 
-static void    sort_env(t_list **env)
-{
-    int i;
-    int j;
-    int size;
-    char *str1;
-    char *str2;
+// static void    sort_env(t_list **env)
+// {
+//     int i;
+//     int j;
+//     int size;
+//     char *str1;
+//     char *str2;
 
-    i = 0;
-    j = 0;
-    while (*env)
-	{
-        str1 = (*env)->content;
-        size = ft_strlen(str1);
-        while (i < size)
-        {
-            while (j + i < size)
-            {
-                (*env) = (*env)->next;
-                str2 = (*env)->content;
-                if (ft_strcmp(str1[i], str2[j + i]) > 0)
-                    j++;
-                else
+//     i = 0;
+//     j = 0;
+//     while (*env)
+// 	{
+//         str1 = (*env)->content;
+//         size = ft_strlen(str1);
+//         while (i < size)
+//         {
+//             while (j + i < size)
+//             {
+//                 (*env) = (*env)->next;
+//                 str2 = (*env)->content;
+//                 if (ft_strcmp(str1[i], str2[j + i]) > 0)
+//                     j++;
+//                 else
                     
-            }
-            (*env) = (*env)->next;
-            i++;
-        }
-	}
-}
+//             }
+//             (*env) = (*env)->next;
+//             i++;
+//         }
+// 	}
+// }
 
 static void    export_update(char *str ,char *start)
 {
@@ -57,7 +57,7 @@ void    ft_export()
     char *start;
 
     env = g_env.env_h;
-    sort_env(&env);
+    //sort_env(&env);
     while (env)
 	{
 		if ((start = ft_strchr(env->content, '=')))

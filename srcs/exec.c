@@ -38,7 +38,6 @@ static	void builtin_coms(t_command *com, char **argv, int ret)
 	out = dup(1);
 	dup2(com->in_red, 0);
 	dup2(com->out_red, 1);
-	// g_minishell.ret =  int - > treat builtin com ! takes (**argv, int com id)
 	g_minishell.ret = exec_builtin(argv, ret);
 	dup2(in, 0);
 	dup2(out, 1);
@@ -47,6 +46,34 @@ static	void builtin_coms(t_command *com, char **argv, int ret)
 	if (com->out_red != 1)
 		close(com->out_red);
 	free(argv);
+}
+
+static void	system_coms(t_command *com, int ret, int *n)
+{
+	if ((ret = fork()) == 0)
+	{
+		if (com->pipe[0] != -1)
+			close(com->pipe[0]);
+		if (com->pipe[1] != -1)
+			close(com->pipe[1]);
+		signal(SIGINT, SIG_DFL);
+		exec_sys_com(com);
+	}
+	else if (ret < 0)
+	{
+		senko_print("SSHEL: ", "fork", ": ", strerror(errno));
+		exit(128);
+	}
+	else
+	{
+		g_minishell.last_cmd = ret;
+		if (com->in_red != 0)
+			close(com->in_red);
+		if (com->out_red != 1)
+			close(com->out_red);
+		g_minishell.fork_p = 1;
+		(*n)++;
+	}
 }
 
 void	exec_commands()
@@ -69,7 +96,7 @@ void	exec_commands()
 		else
 		{
 			free(argv);
-			// system coms  void -> (command, int ret, int *n)
+			system_coms(com, ret, n);
 		}
 		lst = lst->next;
 	}
