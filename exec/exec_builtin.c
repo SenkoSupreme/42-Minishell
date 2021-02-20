@@ -15,6 +15,6 @@ int		exec_builtin(char **cmd, int ret)
 	else if (ret == 6)
 		ft_env(cmd);
 	else if (ret == 7)
-		ft_exit(cmd);
+		senko_exit(cmd);
 	return (0);
 }
