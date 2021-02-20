@@ -5,7 +5,7 @@ int		exec_builtin(char **cmd, int ret)
 	if (ret == 1)
 		ft_echo(cmd);
 	else if (ret == 2)
-		printf("hello from cd\n");
+		ft_cd(cmd);
 	else if (ret == 3)
 		ft_pwd();
 	else if (ret == 4)
