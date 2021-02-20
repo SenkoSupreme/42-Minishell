@@ -96,7 +96,7 @@ void	exec_commands()
 		else
 		{
 			free(argv);
-			system_coms(com, ret, n);
+			system_coms(com, ret, &n);
 		}
 		lst = lst->next;
 	}
