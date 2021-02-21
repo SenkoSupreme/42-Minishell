@@ -39,3 +39,30 @@ char	*ft_append(char *str, char *res, int *i)
 	(*i)++;
 	return (res);
 }
+
+int		custom_len(char *s)
+{
+	int len;
+
+	len = 0;
+	while(s[len] && s[len] != '=')
+		len++;
+	return (len);
+}
+
+void	delete_node(char *s)
+{
+	t_list *tmp;
+	t_list *prev;
+
+	tmp = g_env.env_h;
+	if (tmp != NULL && ft_strncmp(tmp->content, s, custom_len(tmp->content)))
+	{
+		prev = tmp;
+		tmp = tmp->next;
+	}
+	if (tmp == NULL)
+		return;
+	prev->next = tmp->next;
+	ft_lstdelone(tmp, free);
+}
