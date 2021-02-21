@@ -11,7 +11,7 @@ int		exec_builtin(char **cmd, int ret)
 	else if (ret == 4)
 		ft_export();
 	else if (ret == 5)
-		printf("hello from unset\n");
+		ft_unset(cmd);
 	else if (ret == 6)
 		ft_env(cmd);
 	else if (ret == 7)

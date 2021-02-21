@@ -114,6 +114,7 @@ int		ft_pwd(void);
 int		ft_exit(char **cmd);
 void    ft_export();
 void    ft_cd(char **argv);
+void	ft_unset(char **argv);
 void	exec_sys_com(t_command *com);
 
 #endif
