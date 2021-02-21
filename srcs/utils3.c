@@ -82,7 +82,7 @@ int		is_number(char *s)
 int		senko_exit(char **argv)
 {
 	char	*s;
-	s = "argument required";
+	s = "argument required\n";
 	write(2, "exit\n", 5);
 	if (!argv || !argv[1])
 		exit(g_minishell.ret);
@@ -93,7 +93,7 @@ int		senko_exit(char **argv)
 	}
 	if (ptr_strlen(argv) > 2)
 	{
-		senko_print("SSHELL: ", "exit: ", NULL, "too many arguments");
+		senko_print("SSHELL: ", "exit: ", NULL, "too many arguments\n");
 		exit(1);
 	}
 	exit_value(0, argv);

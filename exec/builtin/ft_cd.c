@@ -6,7 +6,8 @@ void    ft_cd(char **argv)
     char *oldcur;
     char pwdcur[1000];
     char pwdold[1000];
-int i=0;
+    int i=0;
+
     cur = getcwd(pwdcur, 200);
     if (!argv[1])
     {
@@ -29,7 +30,7 @@ int i=0;
             senko_print("cd: ", "no such file or directory: ", argv[1], "\n");
     }
     else if (argv[3])
-        printf("cd: too many arguments\n");
+        ft_putstr_fd("cd: too many arguments\n", 2);
     else if (argv[2] && !argv[3])
         senko_print("cd: ", "string not in pwd: ", argv[1], "\n");
 }

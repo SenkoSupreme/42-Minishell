@@ -14,8 +14,6 @@
 # define CBLU "\e[1;3;33m"
 # define RESET "\e[0m"
 
-
-
 typedef struct	s_env
 {
 	char		**path;
@@ -112,7 +110,7 @@ int		exec_builtin(char **cmd, int ret);
 void	ft_echo(char **args);
 void	ft_env(char **argv);
 int		ft_pwd(void);
-void	ft_exit(char **cmd);
+int		ft_exit(char **cmd);
 void    ft_export();
 void    ft_cd(char **argv);
 void	exec_sys_com(t_command *com);

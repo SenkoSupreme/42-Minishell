@@ -1,38 +1,22 @@
 #include "../../minishell.h"
 
-static int	ft_strisnum(const char *str)
+int		ft_exit(char **argv)
 {
-	int	i;
-
-	i = 0;
-	if (str == NULL)
-		return (0);
-	if (str[0] == '-')
-		i++;
-	while (str[i])
+	char	*s;
+	s = "argument required\n";
+	write(2, "exit\n", 5);
+	if (!argv || !argv[1])
+		exit(g_minishell.ret);
+	if (!is_number(argv[1]))
 	{
-		if (str[i] < '0' || str[i] > '9')
-			return (0);
-		i++;
+		senko_print("SSHEL: exit ", argv[1], " ", s);
+		exit(255);
 	}
-	return (1);
-}
-
-void	ft_exit(char **cmd)
-{
-	ft_putstr_fd("exit\n", 2);
-	if (cmd[2])
+	if (ptr_strlen(argv) > 2)
 	{
-		g_minishell.ret = 1;
-		ft_putendl_fd("minishell: exit: too many arguments", 2);
+		senko_print("SSHELL: ", "exit: ", NULL, "too many arguments\n");
+		exit(1);
 	}
-	else if (cmd[0] && ft_strisnum(cmd[1]) == 0)
-	{
-		g_minishell.ret = 255;
-		senko_print("minishell: ", "exit :", cmd[1], ": numeric argument required\n");
-	}
-	else if (cmd[1])
-		g_minishell.ret = ft_atoi(cmd[1]);
-	else
-		g_minishell.ret = 0;
+	exit_value(0, argv);
+	return (0);
 }
