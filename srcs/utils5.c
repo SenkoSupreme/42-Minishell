@@ -50,19 +50,35 @@ int		custom_len(char *s)
 	return (len);
 }
 
-void	delete_node(char *s)
+void		ft_lstclear_one_if(t_list **list, void *ref,
+		int (*f)(), void (*del)(void*))
 {
-	t_list *tmp;
-	t_list *prev;
-
-	tmp = g_env.env_h;
-	if (tmp != NULL && ft_strncmp(tmp->content, s, custom_len(tmp->content)))
+	t_list	*next;
+	t_list	*prev;
+	int n;
+	
+	if (!list || !*list || !f || !del)
+		return ;
+	n = custom_len((*list)->content);
+	if (!f((*list)->content, ref, n) && (prev = *list))
 	{
-		prev = tmp;
-		tmp = tmp->next;
+		*list = prev->next;
+		ft_lstdelone(prev, del);
+		return ;
 	}
-	if (tmp == NULL)
-		return;
-	prev->next = tmp->next;
-	ft_lstdelone(tmp, free);
+	prev = *list;
+	next = (*list)->next;
+	while (prev)
+	{
+		n = custom_len(next->content);
+		if (next && !f(next->content, ref, n) && (prev->next = next->next))
+		{
+			ft_lstdelone(next, del);
+			next = prev->next;
+			return ;
+		}
+		prev = prev->next;
+		if (next->next)
+			next = next->next;
+	}
 }

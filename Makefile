@@ -13,7 +13,7 @@ all: $(NAME)
 
 $(NAME):
 	@make CC=$(CC) -C libft bonus 
-	@$(CC) $(FLAGS) $(SRC) libft/libft.a -Iincludes -o $(NAME)
+	@$(CC) $(FLAGS) $(SRC) libft/libft.a -Iincludes -o $(NAME) -fsanitize=address
 
 clean :
 	@make -C libft clean
