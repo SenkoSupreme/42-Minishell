@@ -48,7 +48,7 @@ int			is_on_char(const char *str, int i, char *c)
 	while (c[j])
 	{
 		if (str[i] == c[j])
-			if (i == 0 || (!is_backslash(str, i) && ! is_quote(str, i)))
+			if (i == 0 || (!is_backslash(str, i) && !is_quote(str, i)))
 				return (1);
 		j++;
 	}
@@ -67,12 +67,13 @@ char		*quotes_conv(char *str)
 	while (str[i])
 	{
 		if ((!quote[0] || 
-		(quote[0] == '"' && (str[i + 1] == '\\' 
-	|| str[i + 1] == '$' || str[i + 1] == '"'))) && is_on_char(str,i, "\\") && ++i)
-		continue;
+		(quote[0] == '"' && (str[i + 1] == '\\' || 
+		str[i + 1] == '$' || str[i + 1] == '"'))) && is_on_char(str,i, "\\") 
+		&& ++i)
+			continue;
 		if ((!quote[0] && is_on_char(str, i, "'\"")) || 
 		(quote[0] == '\'' && str[i] == '\'') || is_on_char(str, i, quote))
-		quote[0] = quote[0] ? 0 : str[i];
+			quote[0] = quote[0] ? 0 : str[i];
 		else
 			res = ft_strappend(res, str[i]);
 		i++;

@@ -100,7 +100,7 @@ void	exec_commands()
 		}
 		lst = lst->next;
 	}
-	// while (n--)
-	// 	senko_wait();
+	while (n--)
+		senko_wait();
 	free_red_files();
 }

@@ -105,6 +105,7 @@ char			*conv_env(char *str);
 void			convert_argv_env(t_list **av, t_list *prev, char *s);
 void			delete_node(char *s);
 int				custom_len(char *s);
+char			*get_from_env(char *s);
 
 void	exec_command(t_env *node);
 int		exec_builtin(char **cmd, int ret);
