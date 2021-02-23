@@ -44,7 +44,7 @@ int 	ft_unset(char **argv)
 	int		ret;
 	char	*s;
 
-	s = "UNVALID";
+	s = "not a valid identifier\n";
 	i = 1;
 	ret = 0;
 	if (!argv[1])
@@ -53,7 +53,7 @@ int 	ft_unset(char **argv)
 	{
 		if (!is_valid_id(argv[i]))
 		{
-			senko_print("SSHELL: unset: ", argv[i], "': ", s);
+			senko_print("SSHELL: unset: `", argv[i], "': ", s);
 			ret = 1;
 			i++;
 			continue ;
