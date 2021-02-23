@@ -1,25 +1,65 @@
 #include "../../minishell.h"
 
-void ft_unset(char **argv)
+int		is_valid_id(char *s)
 {
-    t_list *env;
-    char key[200];
-    char *value;
-    int i;
-    int len;
+	int i;
 
-    value = NULL;
-    i = 0;
-    env = g_env.env_h;
-    value = ft_strchr(argv[1], '=');
-    len = custom_len(argv[1]);
-    while (i < len)
-    {
-        key[i] = argv[1][i];
-        printf("[%c]\n", argv[1][i]);
-        i++;
-    }
-    printf("[Value ---> %s]\n", value);
-    printf("[Key ---> %s]\n", key);
-    delete_node(key);
+	i = 0;
+	if (!s || (!ft_isalpha(s[0]) && s[0] != '_'))
+		return (0);
+	while (s[i])
+	{
+		if (!ft_isalpha(s[i]) && s[i] != '_' && !ft_isdigit(s[i]))
+			if (!(s[i] == '+' && !s[i + 1]))
+				return (0);
+		i++;
+	}
+	return (1);
+}
+
+int 	ft_unset(char **argv)
+{
+	// t_list *env;
+	// char key[200];
+	// char *value;
+	// int i;
+	// int len;
+
+	// value = NULL;
+	// i = 0;
+	// env = g_env.env_h;
+	// value = ft_strchr(argv[1], '=');
+	// len = custom_len(argv[1]);
+	// while (i < len)
+	// {
+	//     key[i] = argv[1][i];
+	//     printf("[%c]\n", argv[1][i]);
+	//     i++;
+	// }
+	// printf("[Value ---> %s]\n", value);
+	// printf("[Key ---> %s]\n", key);
+	// delete_node(key);
+
+	int 	i;
+	int		ret;
+	char	*s;
+
+	s = "not a valid identifier\n";
+	i = 1;
+	ret = 0;
+	if (!argv[1])
+		return (0);
+	while (argv[i])
+	{
+		if (!is_valid_id(argv[i]))
+		{
+			senko_print("SSHELL: unset: `", argv[i], "': ", s);
+			ret = 1;
+			i++;
+			continue ;
+		}
+		ft_lstclear_one_if(&g_env.env_h, argv[i],ft_strncmp,free);
+		i++;
+	}
+	return (ret);
 }

@@ -13,7 +13,7 @@ int		word_len(const char *str, char *c, int separator)
 		{
 			if (is_on_char(str, i, "'\""))
 				quote[0] = quote[0] ? 0 : str[i];
-			if (separator && ft_isalnum(str[i]) && str[i] != '_')
+			if (separator && !ft_isalnum(str[i]) && str[i] != '_')
 				break;
 			if (is_on_char(str, i, c))
 				break;

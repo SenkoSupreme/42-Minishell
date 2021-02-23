@@ -113,9 +113,13 @@ void	ft_echo(char **args);
 void	ft_env(char **argv);
 int		ft_pwd(void);
 int		ft_exit(char **cmd);
-void    ft_export();
+void    ft_export(char **argv);
 void    ft_cd(char **argv);
-void	ft_unset(char **argv);
+int		ft_unset(char **argv);
+int		is_valid_id(char *s);
 void	exec_sys_com(t_command *com);
+
+void		ft_lstclear_one_if(t_list **list, void *ref,
+		int (*f)(), void (*del)(void*));
 
 #endif
