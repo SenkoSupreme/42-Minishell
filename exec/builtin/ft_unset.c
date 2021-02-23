@@ -21,6 +21,5 @@ void ft_unset(char **argv)
     }
     printf("[Value ---> %s]\n", value);
     printf("[Key ---> %s]\n", key);
-    delete_node("PWD");
-    ft_env(argv);
+    delete_node(key);
 }

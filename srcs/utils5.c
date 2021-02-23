@@ -56,13 +56,16 @@ void	delete_node(char *s)
 	t_list *prev;
 
 	tmp = g_env.env_h;
-	if (tmp != NULL && ft_strncmp(tmp->content, s, custom_len(tmp->content)))
+	while(tmp)
 	{
-		prev = tmp;
-		tmp = tmp->next;
+		if (tmp != NULL && ft_strncmp(tmp->content, s, custom_len(tmp->content)))
+		{
+			prev = tmp;
+			tmp = tmp->next;
+		}
+		if (tmp == NULL)
+			break;
 	}
-	if (tmp == NULL)
-		return;
 	prev->next = tmp->next;
 	ft_lstdelone(tmp, free);
 }
