@@ -113,7 +113,7 @@ void	ft_echo(char **args);
 void	ft_env(char **argv);
 int		ft_pwd(void);
 int		ft_exit(char **cmd);
-void    ft_export();
+int    	ft_export(char **argv);
 void    ft_cd(char **argv);
 int		ft_unset(char **argv);
 int		is_valid_id(char *s);

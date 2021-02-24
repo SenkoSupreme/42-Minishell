@@ -43,10 +43,17 @@ static void    export_update(char *str ,char *start)
     ft_putstr_fd("\"\n", 1);
 }
 
-void    ft_export()
+int    ft_export(char **argv)
 {
     t_list *env;
     char *start;
+    int		ret;
+	char	*s;
+    int     i;
+
+	s = "not a valid identifier\n";
+	ret = 0;
+    i = 0;
 
     env = g_env.env_h;
     sort_env(env);
@@ -56,4 +63,5 @@ void    ft_export()
             export_update(env->content, start);
 		env = env->next;
 	}
+    return (0);
 }

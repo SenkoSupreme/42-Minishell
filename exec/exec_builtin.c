@@ -9,7 +9,7 @@ int		exec_builtin(char **cmd, int ret)
 	else if (ret == 3)
 		ft_pwd();
 	else if (ret == 4)
-		ft_export();
+		return(ft_export());
 	else if (ret == 5)
 		return(ft_unset(cmd));
 	else if (ret == 6)
