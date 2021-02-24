@@ -43,25 +43,53 @@ static void    export_update(char *str ,char *start)
     ft_putstr_fd("\"\n", 1);
 }
 
+void    ft_add_in_env(char *argv)
+{
+    char key[200];
+    char *value;
+    int len;
+    int i;
+    char    *s;
+
+    value = NULL;
+    s = "not a valid identifier\n";
+    i = 0;
+    value = ft_strchr(argv, '=');
+    len = custom_len(argv);
+    while (i < len)
+    {
+        key[i] = argv[i];
+        i++;
+    }
+    key[i] = '\0';
+    if (!is_valid_id(key) || argv[0] == '=')
+    {
+        g_minishell.ret = 1;
+        senko_print("SSHEL: export: `", argv, "': ", s);
+        return ;
+    }
+    add_element(key, value + 1);
+}
+
 int    ft_export(char **argv)
 {
-    t_list *env;
-    char *start;
-    int		ret;
-	char	*s;
+    t_list  *env;
+    char    *start;
     int     i;
 
-	s = "not a valid identifier\n";
-	ret = 0;
-    i = 0;
-
+    i = 1;
     env = g_env.env_h;
-    sort_env(env);
-    while (env)
-	{
-		if ((start = ft_strchr(env->content, '=')))
-            export_update(env->content, start);
-		env = env->next;
-	}
+    while (argv[i])
+        ft_add_in_env(argv[i++]);
+    if (!argv[1])
+    {
+        sort_env(env);
+        while (env)
+        {
+            if ((start = ft_strchr(env->content, '=')))
+                export_update(env->content, start);
+            env = env->next;
+        }
+    }
     return (0);
 }
