@@ -21,7 +21,7 @@ static	int	init_exec(t_command *com, int *n, char ***av)
 	{
 		while((*n)--)
 			senko_wait();
-		n = 0;
+		*n = 0;
 	}
 	convert_argv_env(&com->argv, NULL, NULL);
 	*av = list_to_array(com->argv);
@@ -100,7 +100,7 @@ void	exec_commands()
 		}
 		lst = lst->next;
 	}
-	// while (n--)
-	// 	senko_wait();
+	while (n--)
+		senko_wait();
 	free_red_files();
 }

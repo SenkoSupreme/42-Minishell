@@ -63,6 +63,8 @@ void	shell_init(char **env)
 	add_element("SHLVL", "1");
 	//SIGNALS INT & QUIT
 	//handle signals init here
+	// signal(SIGINT,func);
+	// signal(SIGQUIT,func);
 	g_minishell.ret = 0;
 }
 

@@ -8,6 +8,11 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
+# include <signal.h>
+# include <dirent.h>
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <sys/wait.h>
 # define SEP " ;|<>"
 # define CGRN "\e[1;32m"
 # define CRED "\e[1;31m"
@@ -121,5 +126,15 @@ void	exec_sys_com(t_command *com);
 
 void		ft_lstclear_one_if(t_list **list, void *ref,
 		int (*f)(), void (*del)(void*));
+
+char	*get_path();
+
+void	free_double_arr(char **arr);
+
+int		check_path(char *s);
+
+void	check_permissions(char **ev_args, char **argv, struct stat sbuff, int ret);
+
+char		*join_path(char *s, char *s1, char *s2);
 
 #endif

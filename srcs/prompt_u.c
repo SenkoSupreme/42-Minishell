@@ -38,3 +38,15 @@ void			prompt(char *type)
 	else if (senko_equal_str(type, "|"))
 		ft_putstr_fd("pipe > ", 2);
 }
+
+char		*join_path(char *s, char *s1, char *s2)
+{
+	char *tmp;
+	char *pfree;
+
+	tmp = ft_strjoin(s, s1);
+	pfree = tmp;
+	tmp = ft_strjoin(tmp, s2);
+	free(pfree);
+	return (tmp);
+}
