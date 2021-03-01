@@ -15,7 +15,6 @@ void    ft_cd(char **argv)
         printf("%s\n", argv[0]);
         i = chdir(argv[0]);
         printf("%d\n", i);
-
     }
     else if (argv[0] && argv[1] && !argv[2])
     {
