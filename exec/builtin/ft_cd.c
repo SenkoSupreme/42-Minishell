@@ -6,8 +6,9 @@ void    ft_cd(char **argv)
     char *oldcur;
     char pwdcur[1000];
     char pwdold[1000];
-    int i=0;
+    int i;
 
+    i = 0;
     cur = getcwd(pwdcur, 200);
     if (!argv[1])
     {
