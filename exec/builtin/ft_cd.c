@@ -12,7 +12,7 @@ void    ft_cd(char **argv)
     cur = getcwd(pwdcur, 200);
     if (!argv[1])
     {
-        argv[0] = "~/";
+        argv[0] = "/Users/mbrija";
         printf("%s\n", argv[0]);
         i = chdir(argv[0]);
         printf("%d\n", i);
