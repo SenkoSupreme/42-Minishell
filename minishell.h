@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mbrija <mbrija@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/02 15:30:21 by mbrija            #+#    #+#             */
+/*   Updated: 2021/03/02 15:30:39 by mbrija           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
@@ -59,7 +71,6 @@ typedef	struct	s_red_file
 t_minishell		g_minishell;
 t_env			g_env;
 
-
 void			com_initiate();
 char			*read_line();
 t_command 		*new_command(int in, int out, int pipe);
@@ -111,7 +122,6 @@ void			convert_argv_env(t_list **av, t_list *prev, char *s);
 void			delete_node(char *s);
 int				custom_len(char *s);
 char			*get_from_env(char *s);
-
 void			exec_command(t_env *node);
 int				exec_builtin(char **cmd, int ret);
 void			ft_echo(char **args);
@@ -130,7 +140,7 @@ void			free_double_arr(char **arr);
 int				check_path(char *s);
 void			check_permissions(char **ev_args, char **argv, struct stat sbuff, int ret);
 char			*join_path(char *s, char *s1, char *s2);
-void				is_sigquit(int sig);
+void			is_sigquit(int sig);
 void			sig_int(int sig);
 
 #endif
