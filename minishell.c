@@ -61,10 +61,8 @@ void	shell_init(char **env)
 	add_element("PWD", cwd);
 	free(cwd);
 	add_element("SHLVL", "1");
-	//SIGNALS INT & QUIT
-	//handle signals init here
-	// signal(SIGINT,func);
-	// signal(SIGQUIT,func);
+	signal(SIGINT, sig_int);
+	signal(SIGQUIT, sig_int);
 	g_minishell.ret = 0;
 }
 

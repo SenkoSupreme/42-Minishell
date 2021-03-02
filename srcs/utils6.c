@@ -79,9 +79,9 @@ void	check_permissions(char **ev_args, char **argv, struct stat sbuff, int ret)
 	|| S_ISDIR(sbuff.st_mode)) && ft_strchr(argv[0], '/'))
 	{
 		if (S_ISDIR(sbuff.st_mode))
-			senko_print("SSHELL: ", argv[0], ": ", "is a directory");
+			senko_print("SSHELL: ", argv[0], ": ", "is a directory\n");
 		else if (!(sbuff.st_mode & S_IXUSR) || !(sbuff.st_mode & S_IRUSR))
-			senko_print("SSHELL: ", argv[0], ": ", "Permission Denied");
+			senko_print("SSHELL: ", argv[0], ": ", "Permission Denied\n");
 		exit(126);
 	}
 }

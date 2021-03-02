@@ -17,7 +17,7 @@ int		iter_path(int i, char **ev_args, char **argv)
 		}
 		else if (stat(s, &sbuff) == 0 && !(sbuff.st_mode & S_IXUSR))
 		{
-			senko_print("SSHELL: ", s, ": ", "Permission Denied");
+			senko_print("SSHELL: ", s, ": ", "Permission Denied\n");
 			free(ev_args);
 			free(s);
 			exit(126);
@@ -62,9 +62,9 @@ int		sys_redirect(char **argv)
 		return (1);
 	}
 	if (!get_path() || *get_path() == 0)
-		senko_print("SSHELL: ", argv[0], ": ", "No Such File or Directoy"); 
+		senko_print("SSHELL: ", argv[0], ": ", "No Such File or Directoy\n"); 
 	else
-		senko_print("SSHELL: ", argv[0], ": ", "Command not found");
+		senko_print("SSHELL: ", argv[0], ": ", "Command not found\n");
 	return (1);
 }
 

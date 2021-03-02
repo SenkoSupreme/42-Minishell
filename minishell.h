@@ -56,8 +56,8 @@ typedef	struct	s_red_file
 	char		type;
 }				t_red_file;
 
-t_minishell	g_minishell;
-t_env	g_env;
+t_minishell		g_minishell;
+t_env			g_env;
 
 
 void			com_initiate();
@@ -112,29 +112,25 @@ void			delete_node(char *s);
 int				custom_len(char *s);
 char			*get_from_env(char *s);
 
-void	exec_command(t_env *node);
-int		exec_builtin(char **cmd, int ret);
-void	ft_echo(char **args);
-void	ft_env(char **argv);
-int		ft_pwd(void);
-int		ft_exit(char **cmd);
-int    	ft_export(char **argv);
-void    ft_cd(char **argv);
-int		ft_unset(char **argv);
-int		is_valid_id(char *s);
-void	exec_sys_com(t_command *com);
-
-void		ft_lstclear_one_if(t_list **list, void *ref,
+void			exec_command(t_env *node);
+int				exec_builtin(char **cmd, int ret);
+void			ft_echo(char **args);
+void			ft_env(char **argv);
+int				ft_pwd(void);
+int				ft_exit(char **cmd);
+int    			ft_export(char **argv);
+void    		ft_cd(char **argv);
+int				ft_unset(char **argv);
+int				is_valid_id(char *s);
+void			exec_sys_com(t_command *com);
+void			ft_lstclear_one_if(t_list **list, void *ref,
 		int (*f)(), void (*del)(void*));
-
-char	*get_path();
-
-void	free_double_arr(char **arr);
-
-int		check_path(char *s);
-
-void	check_permissions(char **ev_args, char **argv, struct stat sbuff, int ret);
-
-char		*join_path(char *s, char *s1, char *s2);
+char			*get_path();
+void			free_double_arr(char **arr);
+int				check_path(char *s);
+void			check_permissions(char **ev_args, char **argv, struct stat sbuff, int ret);
+char			*join_path(char *s, char *s1, char *s2);
+void				is_sigquit(int sig);
+void			sig_int(int sig);
 
 #endif
