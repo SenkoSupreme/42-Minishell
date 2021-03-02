@@ -7,11 +7,12 @@ void ft_cd(char **argv)
     char pwdcur[1000];
     char pwdold[1000];
     char *str;
-    cur = getcwd(pwdcur, 200);
 
+    cur = getcwd(pwdcur, 200);
+    str = get_var("HOME");
     if (!argv[1])
     {
-        argv[0] = "/Users/sel-fadi";
+        argv[0] = str;
         chdir(argv[0]);
     }
     else if (argv[0] && argv[1] && !argv[2])
