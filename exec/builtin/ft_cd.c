@@ -1,20 +1,18 @@
 #include "../../minishell.h"
 
-void    ft_cd(char **argv)
+void ft_cd(char **argv)
 {
     char *cur;
     char *oldcur;
     char pwdcur[1000];
     char pwdold[1000];
-    int i=0;
-
+    char *str;
     cur = getcwd(pwdcur, 200);
+
     if (!argv[1])
     {
-        argv[0] = "~/";
-        printf("%s\n", argv[0]);
-        i = chdir(argv[0]);
-        printf("%d\n", i);
+        argv[0] = "/Users/sel-fadi";
+        chdir(argv[0]);
     }
     else if (argv[0] && argv[1] && !argv[2])
     {
