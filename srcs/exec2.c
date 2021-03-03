@@ -6,7 +6,7 @@
 /*   By: mbrija <mbrija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 15:27:06 by mbrija            #+#    #+#             */
-/*   Updated: 2021/03/02 15:27:08 by mbrija           ###   ########.fr       */
+/*   Updated: 2021/03/03 16:25:55 by mbrija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,15 +62,17 @@ int		sys_redirect(char **argv)
 	ret = stat(argv[0], &sbuff);
 	if (S_ISLNK(sbuff.st_mode))
 		ret = lstat(argv[0], &sbuff);
-	// printf("ret : %d | arv : %s\n", ret, argv[0]);
 	check_permissions(ev_args, argv, sbuff, ret);
 	free(ev_args);
+	if(argv[0] == NULL)
+		return(1);
 	if (!ft_strchr(argv[0], '/'))
 		if (!try_path(argv))
 			return (0);
 	if (ret && argv[0] && ft_strchr(argv[0], '/'))
 	{
 		senko_print("SSHELL: ", argv[0], ": ", strerror(errno));
+		ft_putstr_fd("\n", 2);
 		return (1);
 	}
 	if (!get_path() || *get_path() == 0)

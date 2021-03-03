@@ -11,7 +11,7 @@ void norme_hack(char **argv, char *cur)
         add_element("OLDPWD", cur);
     }
     else
-        senko_print("SSHEL : cd: ", argv[1], "no such file or directory: ", "\n");
+        senko_print("SSHEL :", " cd: ", argv[1], "no such file or directory\n");
 }
 
 int ft_cd(char **argv)
