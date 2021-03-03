@@ -6,7 +6,7 @@
 /*   By: mbrija <mbrija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 15:30:21 by mbrija            #+#    #+#             */
-/*   Updated: 2021/03/02 15:30:39 by mbrija           ###   ########.fr       */
+/*   Updated: 2021/03/02 15:40:47 by mbrija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ void			ft_env(char **argv);
 int				ft_pwd(void);
 int				ft_exit(char **cmd);
 int    			ft_export(char **argv);
-void    		ft_cd(char **argv);
+int	    		ft_cd(char **argv);
 int				ft_unset(char **argv);
 int				is_valid_id(char *s);
 void			exec_sys_com(t_command *com);
