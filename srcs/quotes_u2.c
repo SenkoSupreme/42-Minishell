@@ -6,7 +6,7 @@
 /*   By: mbrija <mbrija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 15:27:55 by mbrija            #+#    #+#             */
-/*   Updated: 2021/03/02 15:27:56 by mbrija           ###   ########.fr       */
+/*   Updated: 2021/03/03 18:37:40 by mbrija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	split_args(t_list *lst)
 	while ((len = word_len(str + i, " ", 0)))
 	{
 		if (i == 0)
-			tmp->content = ft_substr(str, i , len);
+			tmp->content = ft_substr(str, i, len);
 		else
 		{
 			lst_add(tmp, ft_lstnew(ft_substr(str, i, len)));

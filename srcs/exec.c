@@ -6,13 +6,13 @@
 /*   By: mbrija <mbrija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 15:27:00 by mbrija            #+#    #+#             */
-/*   Updated: 2021/03/02 15:27:02 by mbrija           ###   ########.fr       */
+/*   Updated: 2021/03/03 18:39:36 by mbrija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-static	int	senko_wait()
+static	int		senko_wait(void)
 {
 	int ret;
 	int	pid;
@@ -25,13 +25,13 @@ static	int	senko_wait()
 	return (pid);
 }
 
-static	int	init_exec(t_command *com, int *n, char ***av)
+static	int		init_exec(t_command *com, int *n, char ***av)
 {
 	if (!com || !com->argv || com->in_red == -1 || com->out_red == -1)
 		return (1);
 	if (com->in_red == 0)
 	{
-		while((*n)--)
+		while ((*n)--)
 			senko_wait();
 		*n = 0;
 	}
@@ -40,7 +40,7 @@ static	int	init_exec(t_command *com, int *n, char ***av)
 	return (0);
 }
 
-static	void builtin_coms(t_command *com, char **argv, int ret)
+static	void	builtin_coms(t_command *com, char **argv, int ret)
 {
 	int in;
 	int out;
@@ -60,7 +60,7 @@ static	void builtin_coms(t_command *com, char **argv, int ret)
 	free(argv);
 }
 
-static void	system_coms(t_command *com, int ret, int *n)
+static void		system_coms(t_command *com, int ret, int *n)
 {
 	if ((ret = fork()) == 0)
 	{
@@ -88,7 +88,7 @@ static void	system_coms(t_command *com, int ret, int *n)
 	}
 }
 
-void	exec_commands()
+void			exec_commands(void)
 {
 	t_list		*lst;
 	t_command	*com;
@@ -98,7 +98,7 @@ void	exec_commands()
 
 	lst = g_minishell.com_head;
 	n = 0;
-	while(lst != NULL)
+	while (lst != NULL)
 	{
 		open_red_files(com = lst->content);
 		if (init_exec(com, &n, &argv) && ((lst = lst->next) || 1))

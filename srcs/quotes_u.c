@@ -6,7 +6,7 @@
 /*   By: mbrija <mbrija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 15:27:47 by mbrija            #+#    #+#             */
-/*   Updated: 2021/03/02 15:27:49 by mbrija           ###   ########.fr       */
+/*   Updated: 2021/03/03 19:00:56 by mbrija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ static int	is_quote(const char *str, int i)
 	j = 0;
 	while (j <= i)
 	{
-		if (!quote[0] && (str[j] == '"' || str[j] == '\'') 
+		if (!quote[0] && (str[j] == '"' || str[j] == '\'')
 		&& !is_backslash(str, j))
 			quote[0] = str[j];
-		else if ((quote[0] == '\'' && str[j] == '\'') || 
+		else if ((quote[0] == '\'' && str[j] == '\'') ||
 		(quote[0] == '"' && str[j] == '\"' && !is_backslash(str, j)))
 			quote[0] = 0;
 		j++;
@@ -52,7 +52,7 @@ static int	is_quote(const char *str, int i)
 
 int			is_on_char(const char *str, int i, char *c)
 {
-	int 	j;
+	int		j;
 	char	*quote[2];
 
 	j = 0;
@@ -70,7 +70,7 @@ int			is_on_char(const char *str, int i, char *c)
 char		*quotes_conv(char *str)
 {
 	int		i;
-	char 	*res;
+	char	*res;
 	char	quote[2];
 
 	i = 0;
@@ -78,12 +78,12 @@ char		*quotes_conv(char *str)
 	res = ft_strdup("");
 	while (str[i])
 	{
-		if ((!quote[0] || 
-		(quote[0] == '"' && (str[i + 1] == '\\' || 
-		str[i + 1] == '$' || str[i + 1] == '"'))) && is_on_char(str,i, "\\") 
+		if ((!quote[0] ||
+		(quote[0] == '"' && (str[i + 1] == '\\' ||
+		str[i + 1] == '$' || str[i + 1] == '"'))) && is_on_char(str, i, "\\")
 		&& ++i)
 			continue;
-		if ((!quote[0] && is_on_char(str, i, "'\"")) || 
+		if ((!quote[0] && is_on_char(str, i, "'\"")) ||
 		(quote[0] == '\'' && str[i] == '\'') || is_on_char(str, i, quote))
 			quote[0] = quote[0] ? 0 : str[i];
 		else
@@ -94,7 +94,7 @@ char		*quotes_conv(char *str)
 	return (res);
 }
 
-void	convert_argv_env(t_list **av, t_list *prev, char *s)
+void		convert_argv_env(t_list **av, t_list *prev, char *s)
 {
 	t_list *tmp;
 

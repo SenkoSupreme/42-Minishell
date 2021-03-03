@@ -6,15 +6,15 @@
 /*   By: mbrija <mbrija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 15:27:39 by mbrija            #+#    #+#             */
-/*   Updated: 2021/03/02 15:27:41 by mbrija           ###   ########.fr       */
+/*   Updated: 2021/03/03 18:31:57 by mbrija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-static	char	*senko_getcwd()
+static	char	*senko_getcwd(void)
 {
-	char 	*cwd;
+	char	*cwd;
 	char	*home;
 	char	*res;
 	int		len;
@@ -51,7 +51,7 @@ void			prompt(char *type)
 		ft_putstr_fd("pipe > ", 2);
 }
 
-char		*join_path(char *s, char *s1, char *s2)
+char			*join_path(char *s, char *s1, char *s2)
 {
 	char *tmp;
 	char *pfree;

@@ -6,13 +6,13 @@
 /*   By: mbrija <mbrija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 15:29:49 by mbrija            #+#    #+#             */
-/*   Updated: 2021/03/02 15:29:51 by mbrija           ###   ########.fr       */
+/*   Updated: 2021/03/03 19:03:11 by mbrija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-char		**list_to_array(t_list *lst)
+char			**list_to_array(t_list *lst)
 {
 	char	**av;
 	int		len;
@@ -28,10 +28,10 @@ char		**list_to_array(t_list *lst)
 		lst = lst->next;
 	}
 	av[i] = NULL;
-	return	(av);
+	return (av);
 }
 
-char	*last_com_return(char *res, int *i)
+char			*last_com_return(char *res, int *i)
 {
 	char *var;
 	char *tmp;
@@ -45,7 +45,7 @@ char	*last_com_return(char *res, int *i)
 	return (res);
 }
 
-char	*ft_append(char *str, char *res, int *i)
+char			*ft_append(char *str, char *res, int *i)
 {
 	res = ft_strappend(res, str[*i]);
 	(*i)++;
@@ -57,18 +57,18 @@ int		custom_len(char *s)
 	int len;
 
 	len = 0;
-	while(s[len] && s[len] != '=')
+	while (s[len] && s[len] != '=')
 		len++;
 	return (len);
 }
 
-void		ft_lstclear_one_if(t_list **list, void *ref,
+void			ft_lstclear_one_if(t_list **list, void *ref,
 		int (*f)(), void (*del)(void*))
 {
 	t_list	*next;
 	t_list	*prev;
-	int n;
-	
+	int		n;
+
 	if (!list || !*list || !f || !del)
 		return ;
 	n = custom_len((*list)->content);

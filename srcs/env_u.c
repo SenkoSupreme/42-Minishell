@@ -6,7 +6,7 @@
 /*   By: mbrija <mbrija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 15:26:41 by mbrija            #+#    #+#             */
-/*   Updated: 2021/03/02 15:26:45 by mbrija           ###   ########.fr       */
+/*   Updated: 2021/03/03 18:26:20 by mbrija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*get_var(char *name)
 
 	lst = list_chr(g_env.env_h, name);
 	if (lst == NULL)
-		return(ft_strdup(""));
+		return (ft_strdup(""));
 	res = ft_strchr(lst->content, '=');
 	if (res == NULL)
 		return (ft_strdup(""));
@@ -61,13 +61,13 @@ void	add_element(char *key, char *value)
 
 char	*conv_env(char *str)
 {
-	int 	i;
+	int		i;
 	char	*res;
 	int		len;
 
 	i = 0;
 	res = ft_strdup("");
-	while(str[i])
+	while (str[i])
 	{
 		if (is_on_char(str, i, "$") &&
 		(len = word_len(str + i + 1, g_evir_sep, 1)) > 0)

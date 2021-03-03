@@ -6,7 +6,7 @@
 /*   By: mbrija <mbrija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 15:28:45 by mbrija            #+#    #+#             */
-/*   Updated: 2021/03/02 15:28:47 by mbrija           ###   ########.fr       */
+/*   Updated: 2021/03/03 19:00:36 by mbrija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 t_list	*array_to_list(char **arr)
 {
-	t_list *head;
-	int i;
+	t_list	*head;
+	int		i;
 
 	i = 0;
 	head = NULL;
@@ -38,7 +38,7 @@ int		env_len(char *s)
 			return (i);
 		i++;
 	}
-	return i;
+	return (i);
 }
 
 t_list	*list_chr(t_list *head, char *s)
@@ -52,23 +52,23 @@ t_list	*list_chr(t_list *head, char *s)
 	cur = head;
 	while (cur)
 	{
-		if(!ft_strncmp(s, cur->content, len) 
-		&& (*(((char *)cur->content) + len) == '=' 
+		if (!ft_strncmp(s, cur->content, len)
+		&& (*(((char *)cur->content) + len) == '='
 		|| *(((char *)cur->content) + len) == '\0'))
-		return (cur);
+			return (cur);
 		cur = cur->next;
 	}
 	return (NULL);
 }
 
-int		end_pipe()
+int		end_pipe(void)
 {
 	int i;
 
 	i = ft_strlen(g_minishell.input) - 1;
 	while (i >= 0 && g_minishell.input[i] == ' ')
 		i--;
-	if (i >= 0 && is_on_char(g_minishell.input, i,  "|"))
+	if (i >= 0 && is_on_char(g_minishell.input, i, "|"))
 		return (1);
 	return (0);
 }

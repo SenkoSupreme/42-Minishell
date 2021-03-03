@@ -6,7 +6,7 @@
 /*   By: mbrija <mbrija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 15:28:32 by mbrija            #+#    #+#             */
-/*   Updated: 2021/03/02 15:28:34 by mbrija           ###   ########.fr       */
+/*   Updated: 2021/03/03 18:39:53 by mbrija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	is_sigquit(int sig)
 {
-	if(!g_minishell.fork_p)
+	if (!g_minishell.fork_p)
 		ft_putstr_fd("\b\b  \b\b", 1);
 	else
 	{

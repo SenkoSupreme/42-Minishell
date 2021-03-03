@@ -6,7 +6,7 @@
 /*   By: mbrija <mbrija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 15:29:56 by mbrija            #+#    #+#             */
-/*   Updated: 2021/03/02 15:29:58 by mbrija           ###   ########.fr       */
+/*   Updated: 2021/03/03 18:59:39 by mbrija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*get_from_env(char *s)
 	return (NULL);
 }
 
-char	*get_path()
+char	*get_path(void)
 {
 	t_list	*curr;
 
@@ -55,9 +55,9 @@ void	free_double_arr(char **arr)
 
 int		check_path(char *s)
 {
-	char			**sp;
-	int				i;
-	struct	stat	sbuff;
+	char		**sp;
+	int			i;
+	struct stat	sbuff;
 
 	i = 0;
 	sp = ft_split(s, ':');
@@ -79,7 +79,8 @@ int		check_path(char *s)
 	return (1);
 }
 
-void	check_permissions(char **ev_args, char **argv, struct stat sbuff, int ret)
+void	check_permissions(char **ev_args, char **argv, struct stat sbuff,
+	int ret)
 {
 	if (ret == 0 && sbuff.st_mode & S_IXUSR && sbuff.st_mode & S_IRUSR &&
 	!S_ISDIR(sbuff.st_mode) && check_path(get_path()))
@@ -87,8 +88,8 @@ void	check_permissions(char **ev_args, char **argv, struct stat sbuff, int ret)
 		execve(argv[0], argv, ev_args);
 		exit(0);
 	}
-	else if (ret == 0 && ((!(sbuff.st_mode & S_IXUSR) || !(sbuff.st_mode & S_IRUSR))
-	|| S_ISDIR(sbuff.st_mode)) && ft_strchr(argv[0], '/'))
+	else if (ret == 0 && ((!(sbuff.st_mode & S_IXUSR) || !(sbuff.st_mode &
+	S_IRUSR)) || S_ISDIR(sbuff.st_mode)) && ft_strchr(argv[0], '/'))
 	{
 		if (S_ISDIR(sbuff.st_mode))
 			senko_print("SSHELL: ", argv[0], ": ", "is a directory\n");
@@ -97,7 +98,3 @@ void	check_permissions(char **ev_args, char **argv, struct stat sbuff, int ret)
 		exit(126);
 	}
 }
-
-//00400
-//00400
-//

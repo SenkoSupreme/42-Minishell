@@ -6,7 +6,7 @@
 /*   By: mbrija <mbrija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 15:28:53 by mbrija            #+#    #+#             */
-/*   Updated: 2021/03/02 15:28:55 by mbrija           ###   ########.fr       */
+/*   Updated: 2021/03/03 18:57:26 by mbrija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ int		word_len(const char *str, char *c, int separator)
 			if (is_on_char(str, i, "'\""))
 				quote[0] = quote[0] ? 0 : str[i];
 			if (separator && !ft_isalnum(str[i]) && str[i] != '_')
-				break;
+				break ;
 			if (is_on_char(str, i, c))
-				break;
+				break ;
 		}
 		i++;
 	}
@@ -46,7 +46,7 @@ int		parse_command(char *str)
 	args = str;
 	if (senko_equal_str(g_minishell.read_next, "<"))
 		parse_input_red(str);
-	else if (senko_equal_str(g_minishell.read_next, ">") || 
+	else if (senko_equal_str(g_minishell.read_next, ">") ||
 	senko_equal_str(g_minishell.read_next, ">>"))
 		parse_output_red(args, g_minishell.read_next);
 	else if (args)
@@ -71,11 +71,11 @@ int		is_number(char *s)
 	int i;
 
 	i = 0;
-	if(s[i] == '-' || s[i] == '+')
+	if (s[i] == '-' || s[i] == '+')
 		i++;
 	while (s[i] && (s[i] == '\t' || s[i] == '\f' || s[i] == '\r'))
 		i++;
-	while(s[i])
+	while (s[i])
 	{
 		if (!ft_isdigit(s[i]) && s[i] != ' ' && s[i] != '\t')
 			return (0);
@@ -88,12 +88,13 @@ int		is_number(char *s)
 		i++;
 	if (i > 19)
 		return (0);
-	return(1);
+	return (1);
 }
 
 int		senko_exit(char **argv)
 {
 	char	*s;
+
 	s = "argument required\n";
 	write(2, "exit\n", 5);
 	if (!argv || !argv[1])

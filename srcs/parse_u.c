@@ -6,15 +6,15 @@
 /*   By: mbrija <mbrija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 15:27:16 by mbrija            #+#    #+#             */
-/*   Updated: 2021/03/02 15:27:17 by mbrija           ###   ########.fr       */
+/*   Updated: 2021/03/03 18:30:53 by mbrija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int				parse_pipe(char *str)
+int					parse_pipe(char *str)
 {
-	t_command 	*com;
+	t_command	*com;
 	int			p[2];
 
 	com = g_minishell.com_tail->content;
@@ -43,7 +43,7 @@ static	t_red_file	*red_file(char *file, char type)
 	return (red_file);
 }
 
-int				parse_semi_col(char	*str)
+int					parse_semi_col(char *str)
 {
 	t_command *com;
 
@@ -56,7 +56,7 @@ int				parse_semi_col(char	*str)
 	return (0);
 }
 
-int				parse_output_red(char *str, char *app)
+int					parse_output_red(char *str, char *app)
 {
 	if (senko_equal_str(g_minishell.read_next, ">"))
 	{
@@ -72,7 +72,7 @@ int				parse_output_red(char *str, char *app)
 	}
 	else
 	{
-		if(senko_equal_str(app, ">>"))
+		if (senko_equal_str(app, ">>"))
 			g_minishell.pos += 2;
 		else
 			g_minishell.pos++;
@@ -81,7 +81,7 @@ int				parse_output_red(char *str, char *app)
 	return (0);
 }
 
-int			parse_input_red(char *str)
+int					parse_input_red(char *str)
 {
 	if (senko_equal_str(g_minishell.read_next, "<"))
 	{

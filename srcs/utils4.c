@@ -6,7 +6,7 @@
 /*   By: mbrija <mbrija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 15:29:41 by mbrija            #+#    #+#             */
-/*   Updated: 2021/03/02 15:29:43 by mbrija           ###   ########.fr       */
+/*   Updated: 2021/03/03 18:54:03 by mbrija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int		custom_atoi(const char *str, int i, int *error)
 
 void	exit_value(int ret, char **argv)
 {
-	int 	error;
+	int		error;
 	char	*s;
 
 	error = 0;
@@ -87,11 +87,10 @@ t_list	*lst_remove(t_list **lst, t_list *to_del, void (*del)(void *))
 	if (*lst == to_del)
 	{
 		*lst = (*lst)->next;
-		if(del)
+		if (del)
 			ft_lstdelone(to_del, del);
 		return (*lst);
 	}
-
 	tmp = *lst;
 	while (tmp->next)
 	{

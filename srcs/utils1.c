@@ -6,13 +6,13 @@
 /*   By: mbrija <mbrija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 15:28:39 by mbrija            #+#    #+#             */
-/*   Updated: 2021/03/02 15:28:40 by mbrija           ###   ########.fr       */
+/*   Updated: 2021/03/03 18:43:11 by mbrija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-t_command 	*new_command(int in, int out, int pipe)
+t_command		*new_command(int in, int out, int pipe)
 {
 	t_command *com;
 
@@ -26,23 +26,23 @@ t_command 	*new_command(int in, int out, int pipe)
 	return (com);
 }
 
-void		free_com(void *com)
+void			free_com(void *com)
 {
 	ft_lstclear(&((t_command *)com)->argv, free);
 	free(com);
 }
 
-int		senko_equal_str(char *s1, char *s2)
+int				senko_equal_str(char *s1, char *s2)
 {
 	int len;
 
-	if(!s1 || !s2)
+	if (!s1 || !s2)
 		return (0);
 	len = ft_strlen(s1);
-	return(ft_strncmp(s1, s2, len + 1) == 0);
+	return (ft_strncmp(s1, s2, len + 1) == 0);
 }
 
-int		err_syntax(char *err)
+int				err_syntax(char *err)
 {
 	if (*err == '\x4')
 		senko_print("SSHEL", "syntax error", ": ",
@@ -63,15 +63,15 @@ int		err_syntax(char *err)
 	return (1);
 }
 
-char	*ft_strappend(char *s, char c)
+char			*ft_strappend(char *s, char c)
 {
 	char	strchar[2];
-	char 	*temp;
+	char	*temp;
 
 	temp = s;
 	strchar[0] = c;
 	strchar[1] = 0;
 	s = ft_strjoin(s, strchar);
 	free(temp);
-	return s;
+	return (s);
 }

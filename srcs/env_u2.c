@@ -6,7 +6,7 @@
 /*   By: mbrija <mbrija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 15:26:53 by mbrija            #+#    #+#             */
-/*   Updated: 2021/03/02 15:26:54 by mbrija           ###   ########.fr       */
+/*   Updated: 2021/03/03 18:27:18 by mbrija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,3 @@ char	*replace_env(char *str, char *res, int *i, int len)
 	free(tmp);
 	return (res);
 }
-

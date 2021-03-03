@@ -6,7 +6,7 @@
 /*   By: mbrija <mbrija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 15:28:24 by mbrija            #+#    #+#             */
-/*   Updated: 2021/03/02 15:28:26 by mbrija           ###   ########.fr       */
+/*   Updated: 2021/03/03 19:00:11 by mbrija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int				open_file(char *file, int flag, char *type)
 		fd = open(file, flag);
 	else
 		fd = open(file, flag, 0664);
-	if (fd == - 1)
+	if (fd == -1)
 	{
 		senko_print("SSHELL: ", file, ": ", strerror(errno));
 		g_minishell.ret = 1;
@@ -41,7 +41,7 @@ int				open_file(char *file, int flag, char *type)
 
 void			open_red_file(void *file, void *c)
 {
-	int 		fd;
+	int			fd;
 	t_red_file	*red_file;
 	t_command	*com;
 
@@ -77,12 +77,13 @@ void			open_red_files(t_command *com)
 static	void	free_red_file(void *p)
 {
 	t_red_file	*red_file;
+
 	red_file = p;
 	free(red_file->file);
 	free(red_file);
 }
 
-void			free_red_files()
+void			free_red_files(void)
 {
 	t_list		*lst;
 	t_command	*com;
@@ -91,8 +92,7 @@ void			free_red_files()
 	while (lst != NULL)
 	{
 		com = lst->content;
-		ft_lstclear(&com->red_files,free_red_file);
+		ft_lstclear(&com->red_files, free_red_file);
 		lst = lst->next;
 	}
-	
 }
