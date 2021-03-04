@@ -6,7 +6,7 @@
 /*   By: mbrija <mbrija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 15:30:15 by mbrija            #+#    #+#             */
-/*   Updated: 2021/03/02 15:30:16 by mbrija           ###   ########.fr       */
+/*   Updated: 2021/03/04 18:00:18 by mbrija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ char	*read_line()
 			continue;
 		}
 		else if (buf == '\n')
-			break;
+			break ;
 		g_minishell.input = ft_strappend(g_minishell.input, buf);
 	}
 	return (g_minishell.input);
@@ -80,25 +80,16 @@ void	shell_init(char **env)
 
 int main(int ac, char **av, char **ev)
 {
-	char *old_com;
+	//char *old_com;
 
 	shell_init(ev);
 	av = NULL;
 	ac = 0;
 	while (1)
 	{
-	
 		prompt(NULL);
 		com_initiate();
 		g_minishell.input = read_line();
-		while (end_pipe())
-		{
-			prompt("|");
-			g_minishell.fork_p = 0;
-			old_com = g_minishell.input;
-			g_minishell.input = read_line();
-			free(old_com);
-		}
 		shell_parse();
 		shell_exec(1);
 	}

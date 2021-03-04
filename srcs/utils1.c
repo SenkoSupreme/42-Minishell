@@ -6,7 +6,7 @@
 /*   By: mbrija <mbrija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 15:28:39 by mbrija            #+#    #+#             */
-/*   Updated: 2021/03/03 18:43:11 by mbrija           ###   ########.fr       */
+/*   Updated: 2021/03/04 17:20:15 by mbrija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ int				err_syntax(char *err)
 			err = ">>";
 		else
 			err[1] = 0;
-		senko_print("SSHELL :", "Unexpected token ", err, " \n");
+		senko_print("SSHELL :", "syntax error near unexpected token `",
+		err, "'\n");
 	}
 	g_minishell.ret = 258;
 	g_minishell.status = 0;
