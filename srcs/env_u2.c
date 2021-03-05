@@ -6,13 +6,13 @@
 /*   By: mbrija <mbrija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 15:26:53 by mbrija            #+#    #+#             */
-/*   Updated: 2021/03/05 12:17:32 by mbrija           ###   ########.fr       */
+/*   Updated: 2021/03/05 14:25:35 by mbrija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-char	*replace_env(char *str, char *res, int *i, int len)
+char			*replace_env(char *str, char *res, int *i, int len)
 {
 	char	*tmp;
 	char	*var;
