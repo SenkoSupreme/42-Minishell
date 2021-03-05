@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbrija <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: sel-fadi <sel-fadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/10 10:30:00 by mbrija            #+#    #+#             */
-/*   Updated: 2019/10/10 10:30:05 by mbrija           ###   ########.fr       */
+/*   Updated: 2021/03/05 14:15:22 by sel-fadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ int					ft_isalpha(int c);
 int					ft_isalnum(int c);
 int					ft_toupper(int c);
 int					ft_tolower(int c);
-char				*ft_strnstr(const char *haystack, const char *needle, size_t len);
+char				*ft_strnstr(const char *haystack,
+	const char *needle, size_t len);
 size_t				ft_strlcat(char *dst, const char *src, size_t size);
 size_t				ft_strlcpy(char *dest, const char *src, size_t size);
 void				*ft_memset(void *ptr, int c, size_t n);
@@ -62,7 +63,8 @@ void				ft_lstadd_front(t_list **alst, t_list *new);
 void				fl_lstclear(t_list **lst, void (*del)(void *));
 t_list				*ft_lstlast(t_list *lst);
 int					ft_lstsize(t_list *lst);
-void				ft_lstiter(t_list *lst, void (*f)(void*, void*), void *para);
+void				ft_lstiter(t_list *lst, void (*f)(void*, void*),
+	void *para);
 t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 void (*del)(void*));
 char				**ft_split(char const *s, char c);
