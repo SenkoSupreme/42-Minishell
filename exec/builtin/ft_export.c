@@ -43,7 +43,7 @@ static void		export_update(char *str, char *start)
 	ft_putstr_fd("\"\n", 1);
 }
 
-void			ft_add_in_env(char *argv)
+int				ft_add_in_env(char *argv)
 {
 	char	key[200];
 	char	*value;
@@ -66,9 +66,10 @@ void			ft_add_in_env(char *argv)
 	{
 		g_minishell.ret = 1;
 		senko_print("SSHEL: export: `", argv, "': ", s);
-		return ;
+		return (1);
 	}
 	add_element(key, value + 1);
+	return (0);
 }
 
 int				ft_export(char **argv)
@@ -80,7 +81,8 @@ int				ft_export(char **argv)
 	i = 1;
 	env = g_env.env_h;
 	while (argv[i])
-		ft_add_in_env(argv[i++]);
+		if (ft_add_in_env(argv[i++]) == 1)
+			return (1);
 	if (!argv[1])
 	{
 		sort_env(env);
