@@ -43,16 +43,28 @@ static void		export_update(char *str, char *start)
 	ft_putstr_fd("\"\n", 1);
 }
 
+int				another_norm_hack(char *key, char *argv)
+{
+	char	*s;
+
+	s = "not a valid identifier\n";
+	if (!is_valid_id(key) || argv[0] == '=')
+	{
+		g_minishell.ret = 1;
+		senko_print("SSHEL: export: `", argv, "': ", s);
+		return (1);
+	}
+	return (0);
+}
+
 int				ft_add_in_env(char *argv)
 {
 	char	key[200];
 	char	*value;
 	int		len;
 	int		i;
-	char	*s;
 
 	value = NULL;
-	s = "not a valid identifier\n";
 	i = 0;
 	value = ft_strchr(argv, '=');
 	len = custom_len(argv);
@@ -64,12 +76,8 @@ int				ft_add_in_env(char *argv)
 	key[i] = '\0';
 	if (value == NULL)
 		return (0);
-	if (!is_valid_id(key) || argv[0] == '=')
-	{
-		g_minishell.ret = 1;
-		senko_print("SSHEL: export: `", argv, "': ", s);
+	if (another_norm_hack(key, argv) == 1)
 		return (1);
-	}
 	add_element(key, value + 1);
 	return (0);
 }
