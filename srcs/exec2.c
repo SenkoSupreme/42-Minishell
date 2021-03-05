@@ -6,7 +6,7 @@
 /*   By: mbrija <mbrija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 15:27:06 by mbrija            #+#    #+#             */
-/*   Updated: 2021/03/03 18:29:06 by mbrija           ###   ########.fr       */
+/*   Updated: 2021/03/05 12:12:11 by mbrija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,21 @@ int		try_path(char **argv)
 	return (1);
 }
 
+int		sys_norm_hack(int ret, char **argv)
+{
+	if (ret && argv[0] && ft_strchr(argv[0], '/'))
+	{
+		senko_print("SSHELL: ", argv[0], ": ", strerror(errno));
+		ft_putstr_fd("\n", 2);
+		return (1);
+	}
+	if (!get_path() || *get_path() == 0)
+		senko_print("SSHELL: ", argv[0], ": ", "No Such File or Directoy\n");
+	else
+		senko_print("SSHELL: ", argv[0], ": ", "Command not found\n");
+	return (1);
+}
+
 int		sys_redirect(char **argv)
 {
 	char		**ev_args;
@@ -69,16 +84,8 @@ int		sys_redirect(char **argv)
 	if (!ft_strchr(argv[0], '/'))
 		if (!try_path(argv))
 			return (0);
-	if (ret && argv[0] && ft_strchr(argv[0], '/'))
-	{
-		senko_print("SSHELL: ", argv[0], ": ", strerror(errno));
-		ft_putstr_fd("\n", 2);
+	if (sys_norm_hack(ret, argv) == 1)
 		return (1);
-	}
-	if (!get_path() || *get_path() == 0)
-		senko_print("SSHELL: ", argv[0], ": ", "No Such File or Directoy\n");
-	else
-		senko_print("SSHELL: ", argv[0], ": ", "Command not found\n");
 	return (1);
 }
 
