@@ -62,6 +62,8 @@ int				ft_add_in_env(char *argv)
 		i++;
 	}
 	key[i] = '\0';
+	if (value == NULL)
+		return (0);
 	if (!is_valid_id(key) || argv[0] == '=')
 	{
 		g_minishell.ret = 1;
