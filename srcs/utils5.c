@@ -6,7 +6,7 @@
 /*   By: mbrija <mbrija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 15:29:49 by mbrija            #+#    #+#             */
-/*   Updated: 2021/03/05 11:13:24 by mbrija           ###   ########.fr       */
+/*   Updated: 2021/03/05 14:22:06 by mbrija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,21 +45,12 @@ char			*last_com_return(char *res, int *i)
 	return (res);
 }
 
-char			*ft_append(char *str, char *res, int *i)
+void			lst_norm_hack(t_list *next, t_list *prev,
+		void (*del)(void*))
 {
-	res = ft_strappend(res, str[*i]);
-	(*i)++;
-	return (res);
-}
-
-int				custom_len(char *s)
-{
-	int len;
-
-	len = 0;
-	while (s[len] && s[len] != '=')
-		len++;
-	return (len);
+	ft_lstdelone(next, del);
+	next = prev->next;
+	return ;
 }
 
 void			ft_lstclear_one_if(t_list **list, void *ref,
@@ -84,11 +75,7 @@ void			ft_lstclear_one_if(t_list **list, void *ref,
 	{
 		n = custom_len(next->content);
 		if (next && !f(next->content, ref, n) && (prev->next = next->next))
-		{
-			ft_lstdelone(next, del);
-			next = prev->next;
-			return ;
-		}
+			return (lst_norm_hack(next, prev, del));
 		prev = prev->next;
 		if (next->next)
 			next = next->next;
