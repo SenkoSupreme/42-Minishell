@@ -6,7 +6,7 @@
 /*   By: mbrija <mbrija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 15:29:49 by mbrija            #+#    #+#             */
-/*   Updated: 2021/03/03 19:03:11 by mbrija           ###   ########.fr       */
+/*   Updated: 2021/03/05 11:13:24 by mbrija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ char			*ft_append(char *str, char *res, int *i)
 	return (res);
 }
 
-int		custom_len(char *s)
+int				custom_len(char *s)
 {
 	int len;
 

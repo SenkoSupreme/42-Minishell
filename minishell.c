@@ -6,13 +6,13 @@
 /*   By: mbrija <mbrija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 15:30:15 by mbrija            #+#    #+#             */
-/*   Updated: 2021/03/04 18:00:18 by mbrija           ###   ########.fr       */
+/*   Updated: 2021/03/05 11:14:40 by mbrija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	com_initiate()
+void			com_initiate(void)
 {
 	g_minishell.com_head = ft_lstnew(new_command(0, 1, -1));
 	g_minishell.com_tail = g_minishell.com_head;
@@ -22,7 +22,7 @@ void	com_initiate()
 	g_minishell.pos = 0;
 }
 
-char	*read_line()
+char			*read_line(void)
 {
 	char	buf;
 	int		ret;
@@ -49,7 +49,7 @@ char	*read_line()
 	return (g_minishell.input);
 }
 
-void	shell_exec(int n)
+void			shell_exec(int n)
 {
 	if (g_minishell.status && g_minishell.read_next != NULL)
 		err_syntax("\n");
@@ -64,7 +64,7 @@ void	shell_exec(int n)
 	}
 }
 
-void	shell_init(char **env)
+void			shell_init(char **env)
 {
 	char	*cwd;
 
@@ -78,10 +78,8 @@ void	shell_init(char **env)
 	g_minishell.ret = 0;
 }
 
-int main(int ac, char **av, char **ev)
+int				main(int ac, char **av, char **ev)
 {
-	//char *old_com;
-
 	shell_init(ev);
 	av = NULL;
 	ac = 0;

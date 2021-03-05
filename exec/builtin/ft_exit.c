@@ -3,6 +3,7 @@
 int		ft_exit(char **argv)
 {
 	char	*s;
+
 	s = "argument required\n";
 	write(2, "exit\n", 5);
 	if (!argv || !argv[1])

@@ -6,7 +6,7 @@
 /*   By: mbrija <mbrija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 15:30:21 by mbrija            #+#    #+#             */
-/*   Updated: 2021/03/02 15:40:47 by mbrija           ###   ########.fr       */
+/*   Updated: 2021/03/05 11:17:30 by mbrija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ typedef struct	s_env
 	t_list		*env_h;
 }				t_env;
 
-typedef struct 	s_minishell
+typedef struct	s_minishell
 {
 	int			ret;
 	int			status;
@@ -73,7 +73,7 @@ t_env			g_env;
 
 void			com_initiate();
 char			*read_line();
-t_command 		*new_command(int in, int out, int pipe);
+t_command		*new_command(int in, int out, int pipe);
 void			free_com(void *com);
 int				senko_equal_str(char *s1, char *s2);
 int				err_syntax(char *err);
@@ -93,7 +93,7 @@ int				parse_output_red(char *str, char *app);
 int				parse_input_red(char *str);
 int				word_len(const char *str, char *c, int separator);
 int				parse_command(char *str);
-void 			shell_parse();
+void			shell_parse(void);
 void			shell_exec(int n);
 void			add_element(char *key, char *value);
 void			export_str(char *str);
@@ -128,8 +128,8 @@ void			ft_echo(char **args);
 void			ft_env(char **argv);
 int				ft_pwd(void);
 int				ft_exit(char **cmd);
-int    			ft_export(char **argv);
-int	    		ft_cd(char **argv);
+int				ft_export(char **argv);
+int				ft_cd(char **argv);
 int				ft_unset(char **argv);
 int				is_valid_id(char *s);
 void			exec_sys_com(t_command *com);
@@ -138,7 +138,8 @@ void			ft_lstclear_one_if(t_list **list, void *ref,
 char			*get_path();
 void			free_double_arr(char **arr);
 int				check_path(char *s);
-void			check_permissions(char **ev_args, char **argv, struct stat sbuff, int ret);
+void			check_permissions(char **ev_args, char **argv,
+		struct stat sbuff, int ret);
 char			*join_path(char *s, char *s1, char *s2);
 void			is_sigquit(int sig);
 void			sig_int(int sig);

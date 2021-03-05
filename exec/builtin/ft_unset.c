@@ -17,7 +17,7 @@ int		is_valid_id(char *s)
 	return (1);
 }
 
-int 	ft_unset(char **argv)
+int		ft_unset(char **argv)
 {
 	int 	i;
 	int		ret;
@@ -37,7 +37,7 @@ int 	ft_unset(char **argv)
 			i++;
 			continue ;
 		}
-		ft_lstclear_one_if(&g_env.env_h, argv[i],ft_strncmp,free);
+		ft_lstclear_one_if(&g_env.env_h, argv[i], ft_strncmp, free);
 		i++;
 	}
 	return (ret);
