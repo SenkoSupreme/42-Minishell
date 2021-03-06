@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sel-fadi <sel-fadi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbrija <mbrija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 14:08:24 by sel-fadi          #+#    #+#             */
-/*   Updated: 2021/03/05 14:08:25 by sel-fadi         ###   ########.fr       */
+/*   Updated: 2021/03/05 15:05:23 by mbrija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,12 +99,12 @@ int				ft_export(char **argv)
 	t_list	*env;
 	char	*start;
 	int		i;
+	int		ret_c;
 
 	i = 1;
 	env = g_env.env_h;
 	while (argv[i])
-		if (ft_add_in_env(argv[i++]) == 1)
-			return (1);
+		ret_c = ft_add_in_env(argv[i++]);
 	if (!argv[1])
 	{
 		sort_env(env);
@@ -115,5 +115,7 @@ int				ft_export(char **argv)
 			env = env->next;
 		}
 	}
+	if (ret_c == 1)
+		return (1);
 	return (0);
 }

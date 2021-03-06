@@ -6,7 +6,7 @@
 /*   By: mbrija <mbrija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 15:30:21 by mbrija            #+#    #+#             */
-/*   Updated: 2021/03/05 11:17:30 by mbrija           ###   ########.fr       */
+/*   Updated: 2021/03/05 15:35:15 by mbrija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,6 @@ void			convert_argv_env(t_list **av, t_list *prev, char *s);
 char			**list_to_array(t_list *lst);
 void			exec_commands();
 char			*conv_env(char *str);
-void			convert_argv_env(t_list **av, t_list *prev, char *s);
 void			delete_node(char *s);
 int				custom_len(char *s);
 char			*get_from_env(char *s);

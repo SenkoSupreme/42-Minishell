@@ -6,7 +6,7 @@
 /*   By: mbrija <mbrija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 15:26:53 by mbrija            #+#    #+#             */
-/*   Updated: 2021/03/05 14:25:35 by mbrija           ###   ########.fr       */
+/*   Updated: 2021/03/05 15:17:08 by mbrija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ char			*replace_env(char *str, char *res, int *i, int len)
 {
 	char	*tmp;
 	char	*var;
-
 	tmp = ft_substr(str, *i, len);
 	(*i) += len;
 	var = get_var(tmp);
