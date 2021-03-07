@@ -6,7 +6,7 @@
 /*   By: mbrija <mbrija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 15:28:24 by mbrija            #+#    #+#             */
-/*   Updated: 2021/03/03 19:00:11 by mbrija           ###   ########.fr       */
+/*   Updated: 2021/03/07 10:52:13 by mbrija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int				open_file(char *file, int flag, char *type)
 	if (fd == -1)
 	{
 		senko_print("SSHELL: ", file, ": ", strerror(errno));
+		ft_putstr_fd("n", 2);
 		g_minishell.ret = 1;
 		g_minishell.status = 0;
 	}
@@ -57,6 +58,7 @@ void			open_red_file(void *file, void *c)
 		fd = open_file(red_file->file, O_WRONLY | O_CREAT |
 		O_TRUNC, ">");
 		com->out_red = fd;
+		com->in_red = com->pipe[1];
 	}
 	else if (red_file->type == 2)
 	{

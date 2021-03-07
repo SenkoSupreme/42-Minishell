@@ -6,7 +6,7 @@
 /*   By: mbrija <mbrija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 15:30:21 by mbrija            #+#    #+#             */
-/*   Updated: 2021/03/05 15:35:15 by mbrija           ###   ########.fr       */
+/*   Updated: 2021/03/07 10:46:38 by mbrija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct	s_minishell
 	t_list		*com_head;
 	t_list		*com_tail;
 	char		*read_next;
+	int			expanded;
 }				t_minishell;
 
 typedef	struct	s_command
@@ -142,5 +143,6 @@ void			check_permissions(char **ev_args, char **argv,
 char			*join_path(char *s, char *s1, char *s2);
 void			is_sigquit(int sig);
 void			sig_int(int sig);
+char			*env_quotes_conv(char *str);
 
 #endif

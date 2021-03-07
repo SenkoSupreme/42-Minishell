@@ -6,7 +6,7 @@
 /*   By: mbrija <mbrija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 15:27:06 by mbrija            #+#    #+#             */
-/*   Updated: 2021/03/05 12:12:11 by mbrija           ###   ########.fr       */
+/*   Updated: 2021/03/06 18:24:24 by mbrija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,8 @@ void	exec_sys_com(t_command *com)
 	open_red_files(com);
 	dup2(com->in_red, 0);
 	dup2(com->out_red, 1);
+	dup(com->in_red);
 	sys_redirect(argv);
+	close(com->in_red);
 	exit(127);
 }

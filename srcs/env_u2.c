@@ -6,7 +6,7 @@
 /*   By: mbrija <mbrija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 15:26:53 by mbrija            #+#    #+#             */
-/*   Updated: 2021/03/05 15:17:08 by mbrija           ###   ########.fr       */
+/*   Updated: 2021/03/07 10:46:33 by mbrija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,3 +43,29 @@ int				custom_len(char *s)
 		len++;
 	return (len);
 }
+char			*env_quotes_conv(char *str)
+{
+	int		i;
+	char	*res;
+	char	quote[2];
+
+	i = 0;
+	ft_bzero(quote, 2);
+	res = ft_strdup("");
+	while (str[i])
+	{
+		if ((!quote[0] ||
+		(quote[0] == '"' && (str[i + 1] == '"'))) && is_on_char(str, i, " ")
+		&& ++i)
+			continue;
+		if ((!quote[0] && is_on_char(str, i, "'\"")) ||
+		(quote[0] == '\'' && str[i] == '\'') || is_on_char(str, i, quote))
+			quote[0] = quote[0] ? 0 : str[i];
+		else
+			res = ft_strappend(res, str[i]);
+		i++;
+	}
+	free(str);
+	return (res);
+}
+

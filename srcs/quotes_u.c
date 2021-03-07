@@ -6,7 +6,7 @@
 /*   By: mbrija <mbrija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 15:27:47 by mbrija            #+#    #+#             */
-/*   Updated: 2021/03/05 16:07:56 by mbrija           ###   ########.fr       */
+/*   Updated: 2021/03/07 10:48:26 by mbrija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,13 @@ void		convert_argv_env(t_list **av, t_list *prev, char *s)
 				*av = lst_remove(&tmp, tmp, free);
 			else
 				prev->next = lst_remove(&tmp, tmp, free);
+		}
+		else if (g_minishell.expanded == 1)
+		{
+			tmp->content = env_quotes_conv(tmp->content);
+			prev = tmp;
+			tmp = tmp->next;
+			g_minishell.expanded = 0;
 		}
 		else
 		{
