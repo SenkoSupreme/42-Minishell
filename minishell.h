@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbrija <mbrija@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sel-fadi <sel-fadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 15:30:21 by mbrija            #+#    #+#             */
-/*   Updated: 2021/03/05 15:35:15 by mbrija           ###   ########.fr       */
+/*   Updated: 2021/03/07 15:08:29 by sel-fadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct	s_minishell
 	t_list		*com_head;
 	t_list		*com_tail;
 	char		*read_next;
+	int			expanded;
 }				t_minishell;
 
 typedef	struct	s_command
@@ -142,5 +143,9 @@ void			check_permissions(char **ev_args, char **argv,
 char			*join_path(char *s, char *s1, char *s2);
 void			is_sigquit(int sig);
 void			sig_int(int sig);
+char			*env_quotes_conv(char *str);
+void			loop_hack(t_list **prev, t_list **tmp);
+void			remove_hack(t_list **av, t_list *prev, t_list *tmp);
+void			fork_error_hack(void);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbrija <mbrija@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sel-fadi <sel-fadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 15:27:00 by mbrija            #+#    #+#             */
-/*   Updated: 2021/03/05 15:35:21 by mbrija           ###   ########.fr       */
+/*   Updated: 2021/03/07 15:08:11 by sel-fadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,13 +72,12 @@ static void		system_coms(t_command *com, int ret, int *n)
 		exec_sys_com(com);
 	}
 	else if (ret < 0)
-	{
-		senko_print("SSHEL: ", "fork", ": ", strerror(errno));
-		exit(128);
-	}
+		fork_error_hack();
 	else
 	{
 		g_minishell.last_cmd = ret;
+		if (com->pipe[1] != -1)
+			close(com->pipe[1]);
 		if (com->in_red != 0)
 			close(com->in_red);
 		if (com->out_red != 1)

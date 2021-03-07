@@ -6,7 +6,7 @@
 /*   By: sel-fadi <sel-fadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 15:26:41 by mbrija            #+#    #+#             */
-/*   Updated: 2021/03/06 19:19:05 by sel-fadi         ###   ########.fr       */
+/*   Updated: 2021/03/07 14:43:15 by sel-fadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ char	*conv_env(char *str)
 			if (ft_strchr("0123456789", str[i]) && i++)
 				continue;
 			res = replace_env(str, res, &i, len);
+			g_minishell.expanded = 1;
 		}
 		else if (str[i + 1] == '?')
 			res = last_com_return(res, &i);

@@ -6,7 +6,7 @@
 /*   By: sel-fadi <sel-fadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 15:27:47 by mbrija            #+#    #+#             */
-/*   Updated: 2021/03/06 19:18:33 by sel-fadi         ###   ########.fr       */
+/*   Updated: 2021/03/07 15:04:03 by sel-fadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,17 +108,15 @@ void		convert_argv_env(t_list **av, t_list *prev, char *s)
 		split_args(tmp);
 		s != tmp->content ? free(s) : NULL;
 		if (*((char *)tmp->content) == 0)
+			remove_hack(av, prev, tmp);
+		else if (g_minishell.expanded == 1)
 		{
-			if (*av == tmp)
-				*av = lst_remove(&tmp, tmp, free);
-			else
-				prev->next = lst_remove(&tmp, tmp, free);
-		}
-		else
-		{
-			tmp->content = quotes_conv(tmp->content);
+			tmp->content = env_quotes_conv(tmp->content);
 			prev = tmp;
 			tmp = tmp->next;
+			g_minishell.expanded = 0;
 		}
+		else
+			loop_hack(&prev, &tmp);
 	}
 }
