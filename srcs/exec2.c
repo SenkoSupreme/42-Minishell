@@ -6,7 +6,7 @@
 /*   By: mbrija <mbrija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 15:27:06 by mbrija            #+#    #+#             */
-/*   Updated: 2021/03/07 11:32:09 by mbrija           ###   ########.fr       */
+/*   Updated: 2021/03/08 17:57:39 by mbrija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,14 +73,16 @@ int		sys_redirect(char **argv)
 	struct stat	sbuff;
 	int			ret;
 
+	if (argv[0] == NULL)
+		exit(0);
+	if (argv[0][0] == 0)
+		senko_print("SSHELL: ", argv[0], ": ", "Command not found\n");
 	ev_args = list_to_array(g_env.env_h);
 	ret = stat(argv[0], &sbuff);
 	if (S_ISLNK(sbuff.st_mode))
 		ret = lstat(argv[0], &sbuff);
 	check_permissions(ev_args, argv, sbuff, ret);
 	free(ev_args);
-	if (argv[0] == NULL)
-		return (1);
 	if (!ft_strchr(argv[0], '/'))
 		if (!try_path(argv))
 			return (0);

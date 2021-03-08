@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   exec_builtin.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sel-fadi <sel-fadi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbrija <mbrija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 15:30:48 by mbrija            #+#    #+#             */
-/*   Updated: 2021/03/05 14:11:49 by sel-fadi         ###   ########.fr       */
+/*   Updated: 2021/03/08 15:27:00 by mbrija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int		exec_builtin(char **cmd, int ret)
+int		exec_builtin(char **cmd, int ret, int n)
 {
 	if (ret == 1)
 		ft_echo(cmd);
@@ -26,7 +26,7 @@ int		exec_builtin(char **cmd, int ret)
 		return (ft_unset(cmd));
 	else if (ret == 6)
 		ft_env(cmd);
-	else if (ret == 7)
+	else if (ret == 7 && n < 1)
 		return (ft_exit(cmd));
 	return (0);
 }

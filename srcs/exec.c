@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sel-fadi <sel-fadi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbrija <mbrija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 15:27:00 by mbrija            #+#    #+#             */
-/*   Updated: 2021/03/07 15:11:28 by sel-fadi         ###   ########.fr       */
+/*   Updated: 2021/03/08 17:50:56 by mbrija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static	int		init_exec(t_command *com, int *n, char ***av)
 	return (0);
 }
 
-static	void	builtin_coms(t_command *com, char **argv, int ret)
+static	void	builtin_coms(t_command *com, char **argv, int ret, int n)
 {
 	int in;
 	int out;
@@ -50,7 +50,7 @@ static	void	builtin_coms(t_command *com, char **argv, int ret)
 	out = dup(1);
 	dup2(com->in_red, 0);
 	dup2(com->out_red, 1);
-	g_minishell.ret = exec_builtin(argv, ret);
+	g_minishell.ret = exec_builtin(argv, ret, n);
 	dup2(in, 0);
 	dup2(out, 1);
 	if (com->in_red != 0)
@@ -62,6 +62,7 @@ static	void	builtin_coms(t_command *com, char **argv, int ret)
 
 static void		system_coms(t_command *com, int ret, int *n)
 {
+	g_minishell.n_pipes = 0;
 	if ((ret = fork()) == 0)
 	{
 		if (com->pipe[0] != -1)
@@ -102,9 +103,9 @@ void			exec_commands(void)
 		open_red_files(com = lst->content);
 		if (init_exec(com, &n, &argv) && ((lst = lst->next) || 1))
 			continue;
-		if ((ret = is_command(argv[0])))
-			builtin_coms(com, argv, ret);
-		else
+		if ((ret = is_command(argv[0])) && g_minishell.n_pipes == 0)
+			builtin_coms(com, argv, ret, n);
+		else if (!is_command(argv[0]))
 		{
 			free(argv);
 			system_coms(com, ret, &n);

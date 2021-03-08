@@ -6,7 +6,7 @@
 /*   By: mbrija <mbrija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 15:27:16 by mbrija            #+#    #+#             */
-/*   Updated: 2021/03/06 16:25:33 by mbrija           ###   ########.fr       */
+/*   Updated: 2021/03/08 15:30:23 by mbrija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int					parse_pipe(char *str)
 	str = NULL;
 	g_minishell.read_next = "|";
 	g_minishell.pos++;
+	g_minishell.n_pipes++;
 	return (0);
 }
 

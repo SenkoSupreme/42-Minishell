@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quotes_u.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sel-fadi <sel-fadi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbrija <mbrija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 15:27:47 by mbrija            #+#    #+#             */
-/*   Updated: 2021/03/07 15:12:47 by sel-fadi         ###   ########.fr       */
+/*   Updated: 2021/03/08 16:28:23 by mbrija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ void		convert_argv_env(t_list **av, t_list *prev, char *s)
 		split_args(tmp);
 		s != tmp->content ? free(s) : NULL;
 		if (*((char *)tmp->content) == 0)
-			remove_hack(av, prev, tmp);
+			remove_hack(av, &prev, &tmp);
 		else if (g_minishell.expanded == 1)
 		{
 			tmp->content = env_quotes_conv(tmp->content);

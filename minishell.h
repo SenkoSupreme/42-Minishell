@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sel-fadi <sel-fadi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbrija <mbrija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 15:30:21 by mbrija            #+#    #+#             */
-/*   Updated: 2021/03/07 15:13:08 by sel-fadi         ###   ########.fr       */
+/*   Updated: 2021/03/08 16:24:44 by mbrija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ typedef struct	s_minishell
 	t_list		*com_tail;
 	char		*read_next;
 	int			expanded;
+	int			n_pipes;
 }				t_minishell;
 
 typedef	struct	s_command
@@ -123,7 +124,7 @@ void			delete_node(char *s);
 int				custom_len(char *s);
 char			*get_from_env(char *s);
 void			exec_command(t_env *node);
-int				exec_builtin(char **cmd, int ret);
+int				exec_builtin(char **cmd, int ret, int n);
 void			ft_echo(char **args);
 void			ft_env(char **argv);
 int				ft_pwd(void);
@@ -145,7 +146,7 @@ void			is_sigquit(int sig);
 void			sig_int(int sig);
 char			*env_quotes_conv(char *str);
 void			loop_hack(t_list **prev, t_list **tmp);
-void			remove_hack(t_list **av, t_list *prev, t_list *tmp);
+void			remove_hack(t_list **av, t_list **prev, t_list **tmp);
 void			fork_error_hack(void);
 
 #endif

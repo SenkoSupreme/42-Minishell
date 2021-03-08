@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sel-fadi <sel-fadi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbrija <mbrija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 14:08:09 by sel-fadi          #+#    #+#             */
-/*   Updated: 2021/03/05 14:08:10 by sel-fadi         ###   ########.fr       */
+/*   Updated: 2021/03/08 17:58:57 by mbrija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ void	norme_hack(char **argv, char *cur)
 		add_element("OLDPWD", cur);
 	}
 	else
-		senko_print("SSHEL :", " cd: ", argv[1], "no such file or directory\n");
+		senko_print("SSHEL :", " cd: ", argv[1],
+		" No such file or directory\n");
 }
 
 int		ft_cd(char **argv)
