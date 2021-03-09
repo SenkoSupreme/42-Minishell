@@ -1,4 +1,0 @@
-export mmmmmmm - should appear in export and disappear export
-pipe problem : builtin problem with pipe
-    echo hello | cat
-    echo 5+5 | wc
