@@ -6,7 +6,7 @@
 /*   By: mbrija <mbrija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 14:08:09 by sel-fadi          #+#    #+#             */
-/*   Updated: 2021/03/08 17:58:57 by mbrija           ###   ########.fr       */
+/*   Updated: 2021/03/09 18:58:00 by mbrija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int		ft_cd(char **argv)
 		argv[0] = str;
 		chdir(argv[0]);
 	}
-	else if (argv[0] && argv[1] && !argv[2])
+	else if (argv[0] && argv[1])
 	{
 		norme_hack(argv, cur);
 		return (1);
