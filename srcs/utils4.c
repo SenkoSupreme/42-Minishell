@@ -6,7 +6,7 @@
 /*   By: sel-fadi <sel-fadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 15:29:41 by mbrija            #+#    #+#             */
-/*   Updated: 2021/03/09 11:44:51 by sel-fadi         ###   ########.fr       */
+/*   Updated: 2021/03/09 12:15:42 by sel-fadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,5 +103,4 @@ t_list	*lst_remove(t_list **lst, t_list *to_del, void (*del)(void *))
 		tmp = tmp->next;
 	}
 	return (*lst);
-	
 }
