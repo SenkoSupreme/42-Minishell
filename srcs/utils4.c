@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils4.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sel-fadi <sel-fadi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbrija <mbrija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 15:29:41 by mbrija            #+#    #+#             */
-/*   Updated: 2021/03/09 12:15:42 by sel-fadi         ###   ########.fr       */
+/*   Updated: 2021/03/10 11:49:07 by mbrija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,11 @@ void	exit_value(int ret, char **argv)
 	char	*s;
 
 	error = 0;
-	s = "argument required";
+	s = "numeric argument required\n";
 	ret = custom_atoi(argv[1], 0, &error);
 	if (error)
 	{
-		senko_print("SSHELL : exit ", argv[1], " ", s);
+		senko_print("SSHELL : exit ", argv[1], " :", s);
 		exit(255);
 	}
 	if (ret > 255)

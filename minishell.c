@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sel-fadi <sel-fadi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbrija <mbrija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 15:30:15 by mbrija            #+#    #+#             */
-/*   Updated: 2021/03/09 15:34:11 by sel-fadi         ###   ########.fr       */
+/*   Updated: 2021/03/10 11:54:17 by mbrija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void			shell_init(char **env)
 }
 
 int				main(int ac, char **av, char **ev)
-{	
+{
 	shell_init(ev);
 	av = NULL;
 	ac = 0;

@@ -6,7 +6,7 @@
 /*   By: mbrija <mbrija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/19 17:44:43 by mbrija            #+#    #+#             */
-/*   Updated: 2021/03/08 16:05:40 by mbrija           ###   ########.fr       */
+/*   Updated: 2021/03/10 11:53:31 by mbrija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_lstiter(t_list *lst, void (*f)(void*, void*), void *para)
 		{
 			f(element->content, para);
 			if (g_minishell.ret == 1)
-				break;
+				break ;
 			element = element->next;
 		}
 	}
