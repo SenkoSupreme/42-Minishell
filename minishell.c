@@ -6,7 +6,7 @@
 /*   By: sel-fadi <sel-fadi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 15:30:15 by mbrija            #+#    #+#             */
-/*   Updated: 2021/03/10 19:36:36 by sel-fadi         ###   ########.fr       */
+/*   Updated: 2021/03/10 19:36:53 by sel-fadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,4 @@ int				main(int ac, char **av, char **ev)
 		shell_exec(1);
 	}
 	return (g_minishell.ret);
-	
 }
