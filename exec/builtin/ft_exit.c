@@ -6,7 +6,7 @@
 /*   By: mbrija <mbrija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 14:08:21 by sel-fadi          #+#    #+#             */
-/*   Updated: 2021/03/08 15:19:11 by mbrija           ###   ########.fr       */
+/*   Updated: 2021/03/10 12:57:35 by mbrija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,23 @@ int		ft_exit(char **argv)
 {
 	char	*s;
 
-	s = "argument required\n";
-	write(2, "exit\n", 5);
+	s = "numeric argument required\n";
+	if (g_minishell.n_pipes < 1)
+		write(2, "exit\n", 5);
 	if (!argv || !argv[1])
 		exit(g_minishell.ret);
 	if (!is_number(argv[1]))
 	{
 		senko_print("SSHEL: exit ", argv[1], " ", s);
-		exit(255);
+		if (g_minishell.n_pipes < 1)
+			exit(255);
 	}
-	if (ptr_strlen(argv) > 2)
+	else if (ptr_strlen(argv) > 2)
 	{
 		senko_print("SSHELL: ", "exit: ", NULL, "too many arguments\n");
-		exit(1);
+		return (1);
 	}
-	exit_value(0, argv);
+	if (g_minishell.n_pipes == 0)
+		exit_value(0, argv);
 	return (0);
 }

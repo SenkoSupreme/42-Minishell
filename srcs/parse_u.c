@@ -6,7 +6,7 @@
 /*   By: mbrija <mbrija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 15:27:16 by mbrija            #+#    #+#             */
-/*   Updated: 2021/03/08 15:30:23 by mbrija           ###   ########.fr       */
+/*   Updated: 2021/03/10 14:15:00 by mbrija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ int					parse_pipe(char *str)
 	com->pipe[0] = p[0];
 	g_minishell.com_tail = ft_lstnew(new_command(p[0], 1, p[1]));
 	ft_lstadd_back(&g_minishell.com_head, g_minishell.com_tail);
+	g_minishell.n_pipes++;
 	str = NULL;
 	g_minishell.read_next = "|";
 	g_minishell.pos++;
-	g_minishell.n_pipes++;
 	return (0);
 }
 

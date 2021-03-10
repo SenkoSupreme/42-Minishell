@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mbrija <marvin@42.fr>                      +#+  +:+       +#+         #
+#    By: mbrija <mbrija@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/20 15:04:59 by mbrija            #+#    #+#              #
-#    Updated: 2019/10/20 15:05:03 by mbrija           ###   ########.fr        #
+#    Updated: 2021/03/10 12:01:38 by mbrija           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,6 +51,7 @@ bonus:
 	gcc $(CFLAGS) -c $(SRC_BONUS) $(SRC)
 	ar rc $(NAME) $(OBJ_BONUS) $(OBJ)
 	ranlib $(NAME)
+	/bin/rm -f $(OBJ) $(OBJ_BONUS)
 
 clean:
 	/bin/rm -f $(OBJ) $(OBJ_BONUS)

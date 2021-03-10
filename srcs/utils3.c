@@ -6,7 +6,7 @@
 /*   By: mbrija <mbrija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 15:28:53 by mbrija            #+#    #+#             */
-/*   Updated: 2021/03/03 18:57:26 by mbrija           ###   ########.fr       */
+/*   Updated: 2021/03/10 12:00:19 by mbrija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ int		senko_exit(char **argv)
 {
 	char	*s;
 
-	s = "argument required\n";
+	s = "numeric argument required\n";
 	write(2, "exit\n", 5);
 	if (!argv || !argv[1])
 		exit(g_minishell.ret);

@@ -6,7 +6,7 @@
 /*   By: mbrija <mbrija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 15:29:41 by mbrija            #+#    #+#             */
-/*   Updated: 2021/03/10 11:49:07 by mbrija           ###   ########.fr       */
+/*   Updated: 2021/03/10 12:20:18 by mbrija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,14 @@ void	exit_value(int ret, char **argv)
 	if (error)
 	{
 		senko_print("SSHELL : exit ", argv[1], " :", s);
-		exit(255);
+		if (g_minishell.n_pipes < 1)
+			exit(255);
 	}
-	if (ret > 255)
+	if (ret > 255 && g_minishell.n_pipes < 1)
 		exit(ret - 1 - 255);
-	else if (ret < 0)
+	else if (ret < 0 && g_minishell.n_pipes < 1)
 		exit(256 + ret);
-	else
+	else if (g_minishell.n_pipes < 1)
 		exit(ret);
 }
 
