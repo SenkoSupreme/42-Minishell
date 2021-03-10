@@ -6,7 +6,7 @@
 /*   By: mbrija <mbrija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 15:30:48 by mbrija            #+#    #+#             */
-/*   Updated: 2021/03/08 15:27:00 by mbrija           ###   ########.fr       */
+/*   Updated: 2021/03/10 11:21:54 by mbrija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int		exec_builtin(char **cmd, int ret, int n)
 		return (ft_unset(cmd));
 	else if (ret == 6)
 		ft_env(cmd);
-	else if (ret == 7 && n < 1)
+	else if (ret == 7 && n < 1 && g_minishell.n_pipes == 0)
 		return (ft_exit(cmd));
 	return (0);
 }

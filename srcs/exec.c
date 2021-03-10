@@ -6,7 +6,7 @@
 /*   By: mbrija <mbrija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 15:27:00 by mbrija            #+#    #+#             */
-/*   Updated: 2021/03/08 17:50:56 by mbrija           ###   ########.fr       */
+/*   Updated: 2021/03/10 11:21:46 by mbrija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ void			exec_commands(void)
 		open_red_files(com = lst->content);
 		if (init_exec(com, &n, &argv) && ((lst = lst->next) || 1))
 			continue;
-		if ((ret = is_command(argv[0])) && g_minishell.n_pipes == 0)
+		if ((ret = is_command(argv[0])))
 			builtin_coms(com, argv, ret, n);
 		else if (!is_command(argv[0]))
 		{
