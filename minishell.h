@@ -6,7 +6,7 @@
 /*   By: mbrija <mbrija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 15:30:21 by mbrija            #+#    #+#             */
-/*   Updated: 2021/03/08 16:24:44 by mbrija           ###   ########.fr       */
+/*   Updated: 2021/03/11 12:41:58 by mbrija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ typedef struct	s_minishell
 	char		*read_next;
 	int			expanded;
 	int			n_pipes;
+	int			n_semis;
 }				t_minishell;
 
 typedef	struct	s_command
@@ -104,7 +105,7 @@ void			senko_print(char *s1, char *s2, char *s3, char *s4);
 int				custom_atoi(const char *str, int i, int *error);
 int				is_number(char *s);
 int				senko_exit(char **argv);
-void			exit_value(int ret, char **argv);
+void			exit_value(int ret, char **argv, t_command *com);
 int				ptr_strlen(char **dp);
 char			*quotes_conv(char *str);
 char			*replace_env(char *str, char *res, int *i, int len);
@@ -124,11 +125,11 @@ void			delete_node(char *s);
 int				custom_len(char *s);
 char			*get_from_env(char *s);
 void			exec_command(t_env *node);
-int				exec_builtin(char **cmd, int ret, int n);
+int				exec_builtin(char **cmd, int ret, t_command *com);
 void			ft_echo(char **args);
 void			ft_env(char **argv);
 int				ft_pwd(void);
-int				ft_exit(char **cmd);
+int				ft_exit(char **cmd, t_command *com);
 int				ft_export(char **argv);
 int				ft_cd(char **argv);
 int				ft_unset(char **argv);
@@ -148,5 +149,8 @@ char			*env_quotes_conv(char *str);
 void			loop_hack(t_list **prev, t_list **tmp);
 void			remove_hack(t_list **av, t_list **prev, t_list **tmp);
 void			fork_error_hack(void);
+void			execute_hack(int ret, char **argv, t_command *com, int *n);
+void			builtin_coms(t_command *com, char **argv, int ret);
+void			system_coms(t_command *com, int ret, int *n);
 
 #endif

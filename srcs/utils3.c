@@ -6,7 +6,7 @@
 /*   By: mbrija <mbrija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 15:28:53 by mbrija            #+#    #+#             */
-/*   Updated: 2021/03/10 12:00:19 by mbrija           ###   ########.fr       */
+/*   Updated: 2021/03/11 16:01:31 by mbrija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ int		is_number(char *s)
 	int i;
 
 	i = 0;
+	if (!s)
+		return (1);
 	if (s[i] == '-' || s[i] == '+')
 		i++;
 	while (s[i] && (s[i] == '\t' || s[i] == '\f' || s[i] == '\r'))
@@ -109,6 +111,6 @@ int		senko_exit(char **argv)
 		senko_print("SSHELL: ", "exit: ", NULL, "too many arguments\n");
 		exit(1);
 	}
-	exit_value(0, argv);
+	exit_value(0, argv, NULL);
 	return (0);
 }

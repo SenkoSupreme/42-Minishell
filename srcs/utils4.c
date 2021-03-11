@@ -6,7 +6,7 @@
 /*   By: mbrija <mbrija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 15:29:41 by mbrija            #+#    #+#             */
-/*   Updated: 2021/03/10 12:20:18 by mbrija           ###   ########.fr       */
+/*   Updated: 2021/03/11 16:06:04 by mbrija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,25 +39,27 @@ int		custom_atoi(const char *str, int i, int *error)
 	return (result * sign);
 }
 
-void	exit_value(int ret, char **argv)
+void	exit_value(int ret, char **argv, t_command *com)
 {
 	int		error;
 	char	*s;
 
 	error = 0;
 	s = "numeric argument required\n";
+	if (!argv[1])
+		return ;
 	ret = custom_atoi(argv[1], 0, &error);
 	if (error)
 	{
 		senko_print("SSHELL : exit ", argv[1], " :", s);
-		if (g_minishell.n_pipes < 1)
+		if (com->pipe[1] == -1 && com->pipe[0] == -1)
 			exit(255);
 	}
-	if (ret > 255 && g_minishell.n_pipes < 1)
+	if (ret > 255 && com->pipe[1] == -1 && com->pipe[0] == -1)
 		exit(ret - 1 - 255);
-	else if (ret < 0 && g_minishell.n_pipes < 1)
-		exit(256 + ret);
-	else if (g_minishell.n_pipes < 1)
+	else if (ret < 0 && com->pipe[1] == -1 && com->pipe[0] == -1)
+		exit(256 + ret && com->pipe[1] == -1 && com->pipe[0] == -1);
+	else if (com->pipe[1] == -1 && com->pipe[0] == -1)
 		exit(ret);
 }
 

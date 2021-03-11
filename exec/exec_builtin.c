@@ -6,13 +6,13 @@
 /*   By: mbrija <mbrija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 15:30:48 by mbrija            #+#    #+#             */
-/*   Updated: 2021/03/10 13:00:42 by mbrija           ###   ########.fr       */
+/*   Updated: 2021/03/11 15:42:28 by mbrija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int		exec_builtin(char **cmd, int ret, int n)
+int		exec_builtin(char **cmd, int ret, t_command *com)
 {
 	if (ret == 1)
 		ft_echo(cmd);
@@ -26,8 +26,7 @@ int		exec_builtin(char **cmd, int ret, int n)
 		return (ft_unset(cmd));
 	else if (ret == 6)
 		ft_env(cmd);
-	else if (ret == 7 && n == 0)
-		{printf("{%d}\n", g_minishell.n_pipes);
-		return (ft_exit(cmd));}
+	else if (ret == 7)
+		return (ft_exit(cmd, com));
 	return (0);
 }

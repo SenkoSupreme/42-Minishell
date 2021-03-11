@@ -6,7 +6,7 @@
 /*   By: mbrija <mbrija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 15:27:00 by mbrija            #+#    #+#             */
-/*   Updated: 2021/03/10 12:54:58 by mbrija           ###   ########.fr       */
+/*   Updated: 2021/03/11 12:44:02 by mbrija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static	int		init_exec(t_command *com, int *n, char ***av)
 	return (0);
 }
 
-static	void	builtin_coms(t_command *com, char **argv, int ret, int n)
+void			builtin_coms(t_command *com, char **argv, int ret)
 {
 	int in;
 	int out;
@@ -50,7 +50,7 @@ static	void	builtin_coms(t_command *com, char **argv, int ret, int n)
 	out = dup(1);
 	dup2(com->in_red, 0);
 	dup2(com->out_red, 1);
-	g_minishell.ret = exec_builtin(argv, ret, n);
+	g_minishell.ret = exec_builtin(argv, ret, com);
 	dup2(in, 0);
 	dup2(out, 1);
 	if (com->in_red != 0)
@@ -60,9 +60,8 @@ static	void	builtin_coms(t_command *com, char **argv, int ret, int n)
 	free(argv);
 }
 
-static void		system_coms(t_command *com, int ret, int *n)
+void			system_coms(t_command *com, int ret, int *n)
 {
-	g_minishell.n_pipes = 0;
 	if ((ret = fork()) == 0)
 	{
 		if (com->pipe[0] != -1)
@@ -98,21 +97,17 @@ void			exec_commands(void)
 
 	lst = g_minishell.com_head;
 	n = 0;
+	ret = 0;
 	while (lst != NULL)
 	{
 		open_red_files(com = lst->content);
 		if (init_exec(com, &n, &argv) && ((lst = lst->next) || 1))
 			continue;
-		if ((ret = is_command(argv[0])))
-			builtin_coms(com, argv, ret, n);
-		else if (!is_command(argv[0]))
-		{
-			free(argv);
-			system_coms(com, ret, &n);
-		}
+		execute_hack(ret, argv, com, &n);
 		lst = lst->next;
 	}
 	while (n--)
 		senko_wait();
 	free_red_files();
+	g_minishell.n_pipes = 0;
 }
