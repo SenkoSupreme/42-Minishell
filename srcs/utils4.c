@@ -6,7 +6,7 @@
 /*   By: mbrija <mbrija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 15:29:41 by mbrija            #+#    #+#             */
-/*   Updated: 2021/03/11 16:06:04 by mbrija           ###   ########.fr       */
+/*   Updated: 2021/03/12 18:09:37 by mbrija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	exit_value(int ret, char **argv, t_command *com)
 	if (ret > 255 && com->pipe[1] == -1 && com->pipe[0] == -1)
 		exit(ret - 1 - 255);
 	else if (ret < 0 && com->pipe[1] == -1 && com->pipe[0] == -1)
-		exit(256 + ret && com->pipe[1] == -1 && com->pipe[0] == -1);
+		exit(256 + ret);
 	else if (com->pipe[1] == -1 && com->pipe[0] == -1)
 		exit(ret);
 }
