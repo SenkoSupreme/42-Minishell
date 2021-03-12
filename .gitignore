@@ -7,3 +7,4 @@ a.out*
 test line
 main.c
 minishell.*
+srcs/file.c

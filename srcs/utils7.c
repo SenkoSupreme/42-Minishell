@@ -6,7 +6,7 @@
 /*   By: mbrija <mbrija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 15:05:04 by sel-fadi          #+#    #+#             */
-/*   Updated: 2021/03/11 12:01:02 by mbrija           ###   ########.fr       */
+/*   Updated: 2021/03/12 17:58:06 by mbrija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,18 @@ void		execute_hack(int ret, char **argv, t_command *com, int *n)
 		free(argv);
 		system_coms(com, ret, n);
 	}
+}
+
+t_command	*init_command(int in, int out, int pipe)
+{
+	t_command *com;
+
+	com = malloc(sizeof(t_command));
+	com->argv = NULL;
+	com->in_red = in;
+	com->out_red = out;
+	com->red_files = NULL;
+	com->pipe[0] = -1;
+	com->pipe[1] = pipe;
+	return (com);
 }

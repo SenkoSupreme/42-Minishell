@@ -6,7 +6,7 @@
 /*   By: mbrija <mbrija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 15:30:15 by mbrija            #+#    #+#             */
-/*   Updated: 2021/03/11 16:07:29 by mbrija           ###   ########.fr       */
+/*   Updated: 2021/03/12 15:00:15 by mbrija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void			com_initiate(void)
 {
-	g_minishell.com_head = ft_lstnew(new_command(0, 1, -1));
+	g_minishell.com_head = ft_lstnew(init_command(0, 1, -1));
 	g_minishell.com_tail = g_minishell.com_head;
 	g_minishell.status = 1;
 	g_minishell.fork_p = 0;

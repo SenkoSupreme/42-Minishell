@@ -6,7 +6,7 @@
 /*   By: mbrija <mbrija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 15:28:24 by mbrija            #+#    #+#             */
-/*   Updated: 2021/03/08 16:02:30 by mbrija           ###   ########.fr       */
+/*   Updated: 2021/03/12 17:50:54 by mbrija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,14 @@ void			free_red_files(void)
 	{
 		com = lst->content;
 		ft_lstclear(&com->red_files, free_red_file);
+		if (com->pipe[0] != -1)
+			close(com->pipe[0]);
+		if (com->pipe[1] != -1)
+			close(com->pipe[1]);
+		if (com->in_red != 0)
+			close(com->in_red);
+		if (com->out_red != 1)
+			close(com->out_red);
 		lst = lst->next;
 	}
 }

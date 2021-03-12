@@ -6,7 +6,7 @@
 /*   By: mbrija <mbrija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 15:27:00 by mbrija            #+#    #+#             */
-/*   Updated: 2021/03/11 12:44:02 by mbrija           ###   ########.fr       */
+/*   Updated: 2021/03/12 15:57:28 by mbrija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ void			builtin_coms(t_command *com, char **argv, int ret)
 	g_minishell.ret = exec_builtin(argv, ret, com);
 	dup2(in, 0);
 	dup2(out, 1);
+	close(in);
+	close(out);
 	if (com->in_red != 0)
 		close(com->in_red);
 	if (com->out_red != 1)
