@@ -6,7 +6,7 @@
 #    By: mbrija <mbrija@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/02 15:30:08 by mbrija            #+#    #+#              #
-#    Updated: 2021/03/08 16:15:17 by mbrija           ###   ########.fr        #
+#    Updated: 2021/03/13 10:38:50 by mbrija           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ all: $(NAME)
 
 $(NAME):
 	@make CC=$(CC) -C libft bonus 
-	@$(CC) $(FLAGS) $(SRC) libft/libft.a -Iincludes -o $(NAME) -fsanitize=address -g
+	@$(CC) $(FLAGS) $(SRC) libft/libft.a -Iincludes -o $(NAME)
 
 clean :
 	@make -C libft clean
