@@ -6,7 +6,7 @@
 /*   By: mbrija <mbrija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 14:08:24 by sel-fadi          #+#    #+#             */
-/*   Updated: 2021/03/13 17:41:10 by mbrija           ###   ########.fr       */
+/*   Updated: 2021/03/13 19:18:35 by mbrija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,22 +74,18 @@ int				another_norm_hack(char *key, char *argv)
 	return (0);
 }
 
-int				ft_add_in_env(char *argv)
+int				ft_add_in_env(char *argv, t_list *env)
 {
 	char	key[200];
 	char	*value;
 	int		len;
 	int		i;
+	t_list	*curr;
 
-	value = NULL;
 	i = 0;
 	value = ft_strchr(argv, '=');
 	len = custom_len(argv);
-	if ((size_t)len == ft_strlen(argv))
-	{
-		add_element(argv, NULL);
-		return (0);
-	}
+	curr = env;
 	while (i < len)
 	{
 		key[i] = argv[i];
@@ -98,6 +94,8 @@ int				ft_add_in_env(char *argv)
 	key[i] = '\0';
 	if (another_norm_hack(key, argv) == 1)
 		return (1);
+	if (export_hack(curr, argv, len) == 1)
+		return (0);
 	add_element(key, value);
 	return (0);
 }
@@ -111,7 +109,7 @@ int				ft_export(char **argv)
 	i = 1;
 	env = g_env.env_h;
 	while (argv[i])
-		ret_c = ft_add_in_env(argv[i++]);
+		ret_c = ft_add_in_env(argv[i++], env);
 	if (!argv[1])
 	{
 		sort_env(env);

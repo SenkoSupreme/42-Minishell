@@ -6,7 +6,7 @@
 /*   By: mbrija <mbrija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 15:30:21 by mbrija            #+#    #+#             */
-/*   Updated: 2021/03/12 17:57:55 by mbrija           ###   ########.fr       */
+/*   Updated: 2021/03/13 19:18:03 by mbrija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,5 +153,6 @@ void			execute_hack(int ret, char **argv, t_command *com, int *n);
 void			builtin_coms(t_command *com, char **argv, int ret);
 void			system_coms(t_command *com, int ret, int *n);
 t_command		*init_command(int in, int out, int pipe);
+int				export_hack(t_list *curr, char *argv, int len);
 
 #endif
