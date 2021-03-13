@@ -6,7 +6,7 @@
 /*   By: mbrija <mbrija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 15:26:41 by mbrija            #+#    #+#             */
-/*   Updated: 2021/03/10 11:52:07 by mbrija           ###   ########.fr       */
+/*   Updated: 2021/03/13 17:38:00 by mbrija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,16 +45,15 @@ void	export_str(char *str)
 
 void	add_element(char *key, char *value)
 {
-	char	*pfree;
 	char	*temp;
 
-	temp = ft_strjoin(key, "=");
-	pfree = temp;
-	if (value)
+	temp = key;
+	if (value == NULL)
 	{
-		temp = ft_strjoin(temp, value);
-		free(pfree);
+		export_str(temp);
+		return ;
 	}
+	temp = ft_strjoin(temp, value);
 	export_str(temp);
 	free(temp);
 }

@@ -6,7 +6,7 @@
 /*   By: mbrija <mbrija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 14:08:24 by sel-fadi          #+#    #+#             */
-/*   Updated: 2021/03/05 15:05:23 by mbrija           ###   ########.fr       */
+/*   Updated: 2021/03/13 17:41:10 by mbrija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,24 +35,29 @@ static void		sort_env(t_list *env)
 	}
 }
 
-static void		export_update(char *str, char *start)
+static void		export_update(char *str)
 {
-	int len;
-	int i;
+	int		i;
+	char	*val;
 
 	i = 0;
-	len = ft_strlen(start);
 	ft_putstr_fd("declare -x ", 1);
 	while (str[i])
 		if (str[i] != '=')
+		{
 			ft_putchar_fd(str[i++], 1);
+		}
 		else
 			break ;
 	i = 1;
-	ft_putstr_fd("=\"", 1);
-	while (i < len)
-		ft_putchar_fd(start[i++], 1);
-	ft_putstr_fd("\"\n", 1);
+	if ((val = ft_strchr(str, '=')))
+	{
+		ft_putstr_fd("=\"", 1);
+		while (val[i])
+			ft_putchar_fd(val[i++], 1);
+		ft_putstr_fd("\"", 1);
+	}
+	ft_putstr_fd("\n", 1);
 }
 
 int				another_norm_hack(char *key, char *argv)
@@ -80,24 +85,26 @@ int				ft_add_in_env(char *argv)
 	i = 0;
 	value = ft_strchr(argv, '=');
 	len = custom_len(argv);
+	if ((size_t)len == ft_strlen(argv))
+	{
+		add_element(argv, NULL);
+		return (0);
+	}
 	while (i < len)
 	{
 		key[i] = argv[i];
 		i++;
 	}
 	key[i] = '\0';
-	if (value == NULL)
-		return (0);
 	if (another_norm_hack(key, argv) == 1)
 		return (1);
-	add_element(key, value + 1);
+	add_element(key, value);
 	return (0);
 }
 
 int				ft_export(char **argv)
 {
 	t_list	*env;
-	char	*start;
 	int		i;
 	int		ret_c;
 
@@ -110,8 +117,7 @@ int				ft_export(char **argv)
 		sort_env(env);
 		while (env)
 		{
-			if ((start = ft_strchr(env->content, '=')))
-				export_update(env->content, start);
+			export_update(env->content);
 			env = env->next;
 		}
 	}

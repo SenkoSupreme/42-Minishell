@@ -6,7 +6,7 @@
 /*   By: mbrija <mbrija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 15:30:15 by mbrija            #+#    #+#             */
-/*   Updated: 2021/03/12 15:00:15 by mbrija           ###   ########.fr       */
+/*   Updated: 2021/03/13 15:58:14 by mbrija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,9 @@ void			shell_init(char **env)
 
 	g_env.env_h = array_to_list(env);
 	cwd = getcwd(NULL, 0);
-	add_element("PWD", cwd);
+	add_element("PWD=", cwd);
 	free(cwd);
-	add_element("SHLVL", "1");
+	add_element("SHLVL=", "1");
 	signal(SIGINT, sig_int);
 	signal(SIGQUIT, sig_int);
 	g_minishell.ret = 0;
