@@ -6,7 +6,7 @@
 /*   By: mbrija <mbrija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 15:30:48 by mbrija            #+#    #+#             */
-/*   Updated: 2021/03/12 11:45:49 by mbrija           ###   ########.fr       */
+/*   Updated: 2021/03/13 19:21:46 by mbrija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		exec_builtin(char **cmd, int ret, t_command *com)
 	if (ret == 1)
 		ft_echo(cmd);
 	else if (ret == 2)
-		return (ft_cd(cmd));
+		return (ft_cd(cmd, com));
 	else if (ret == 3)
 		ft_pwd();
 	else if (ret == 4)
