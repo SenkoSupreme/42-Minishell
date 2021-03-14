@@ -6,7 +6,7 @@
 /*   By: mbrija <mbrija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 14:08:09 by sel-fadi          #+#    #+#             */
-/*   Updated: 2021/03/14 14:49:07 by mbrija           ###   ########.fr       */
+/*   Updated: 2021/03/14 14:55:19 by mbrija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int		norme_hack(char **argv, char *cur, t_command *com)
 	{
 		senko_print("SSHEL :", " cd: ", argv[1],
 		" No such file or directory\n");
+		return (1);
 	}
 	return (0);
 }
@@ -46,6 +47,6 @@ int		ft_cd(char **argv, t_command *com)
 		chdir(argv[0]);
 	}
 	else if (argv[0] && argv[1])
-		norme_hack(argv, cur, com);
+		return(norme_hack(argv, cur, com));
 	return (0);
 }
